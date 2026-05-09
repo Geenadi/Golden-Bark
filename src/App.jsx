@@ -169,7 +169,7 @@ function Footer() {
           <div>
             <h4 className="footer-col-title">Our Products</h4>
             <ul className="footer-links">
-              {['Alba Grade', 'H1 Grade', 'H2 Grade', 'C4 Grade', 'C5 Grade', 'C5 Special Grade'].map(p => (
+              {['Alba Grade', 'H1 Grade', 'H2 Grade', 'C4 Grade', 'C5 Grade', 'Cinnamon Powder'].map(p => (
                 <li key={p}>
                   <Link to="/products" className="footer-link">
                     <ChevronRight size={12} /> {p}

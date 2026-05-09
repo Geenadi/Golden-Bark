@@ -187,12 +187,12 @@ export default function Contact() {
                       <label className="form-label">Grade of Interest</label>
                       <select name="grade" className="form-control" value={form.grade} onChange={handleChange}>
                         <option value="">Select a grade...</option>
-                        <option value="alba">Alba (Ultra Premium)</option>
-                        <option value="h1">H1 (Premium)</option>
-                        <option value="h2">H2 (Superior)</option>
-                        <option value="c4">C4 (Commercial)</option>
-                        <option value="c5">C5 (Standard)</option>
-                        <option value="c5-special">C5 Special (Enhanced)</option>
+                        <option value="alba">Alba (Ultra-thin Luxury)</option>
+                        <option value="h1">H1 (Industrial / Powder)</option>
+                        <option value="h2">H2 (Industrial / Powder)</option>
+                        <option value="c4">C4 (Export Quality)</option>
+                        <option value="c5">C5 (Export Quality)</option>
+                        <option value="powder">Cinnamon Powder (Ready to Use)</option>
                         <option value="multiple">Multiple Grades</option>
                       </select>
                     </div>

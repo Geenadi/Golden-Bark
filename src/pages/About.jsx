@@ -17,12 +17,11 @@ function useScrollReveal() {
 }
 
 const timeline = [
-  { year: '2005', title: 'Founded', desc: 'Golden Bark was established in Colombo with a mission to bring authentic Ceylon cinnamon to global markets.' },
-  { year: '2009', title: 'First Export', desc: 'Completed our first international shipment to Europe, opening doors to the premium spice markets of Germany and France.' },
-  { year: '2013', title: 'ISO Certified', desc: 'Achieved ISO 9001:2015 certification, validating our commitment to consistent, world-class quality management.' },
-  { year: '2017', title: 'Organic Expansion', desc: 'Expanded our organic-certified supply chain to include over 200 partner farms across Matara and Galle districts.' },
-  { year: '2021', title: '40+ Countries', desc: 'Reached a milestone of exporting to more than 40 countries across 6 continents.' },
-  { year: '2024', title: 'Sustainability Initiative', desc: 'Launched our "Green Bark" sustainability program to ensure carbon-neutral operations by 2030.' },
+  { year: '2025', title: 'Official Registration', desc: 'Golden Bark Exports Pvt Ltd was officially incorporated, marking the beginning of our journey to formalise Sri Lanka\'s cinnamon export sector.' },
+  { year: '2025', title: 'Global Operations', desc: 'Established our primary export hub in Colombo, connecting directly with premium spice markets in Europe and North America.' },
+  { year: '2025', title: 'Certification Milestone', desc: 'Successfully achieved initial quality certifications, ensuring our processes meet international food safety standards.' },
+  { year: '2025', title: 'Network Expansion', desc: 'Consolidated our network of traditional partner farms across Galle, ensuring 100% traceability for every quill.' },
+  { year: 'Future', title: 'Global Leadership', desc: 'Aiming to become the most trusted name in Ceylon cinnamon, setting new standards for quality and ethical trade.' },
 ];
 
 const values = [
@@ -53,7 +52,7 @@ export default function About() {
             Crafting <span className="text-gold">Excellence</span><br />Since 2025
           </h1>
           <p className="page-hero-sub">
-            Two decades of passion, precision, and purpose — bringing the world's finest Ceylon cinnamon from Sri Lanka's green heartlands to your doorstep.
+            A new chapter in Ceylon cinnamon — blending generations of traditional farming wisdom with modern export excellence to bring the world's finest spice to your doorstep.
           </p>
         </div>
       </section>
@@ -69,10 +68,10 @@ export default function About() {
               </h2>
               <div className="gold-divider" />
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '20px' }}>
-                Golden Bark Exports Pvt Ltd was founded with a singular vision: to make authentic, 
-                premium Ceylon cinnamon accessible to the world's finest markets. Our journey began 
-                in 2005 when our founder, with deep roots in Sri Lanka's spice-growing community, 
-                recognised that the world's most valuable cinnamon was being undervalued and underexposed.
+                Golden Bark Exports Pvt Ltd was registered in 2025 with a clear mission: to 
+                bring professional export standards to the traditional Ceylon cinnamon trade. 
+                While the company is a new entity, our roots run deep in the Galle district, 
+                where our team has been part of the cinnamon-growing community for generations.
               </p>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '20px' }}>
                 Today, we partner with hundreds of skilled cinnamon peelers across the Southern and 
@@ -142,7 +141,7 @@ export default function About() {
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Our Journey</div>
             <h2 className="section-title">
-              Two Decades of <span className="text-gold">Growing Excellence</span>
+              Our Journey to <span className="text-gold">Excellence</span>
             </h2>
             <div className="gold-divider" style={{ margin: '20px auto' }} />
           </div>

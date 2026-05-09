@@ -16,15 +16,15 @@ function useScrollReveal() {
         if (el.isIntersecting) el.target.classList.add('revealed');
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 }
 
 const products = [
-  { grade: 'Alba', tag: 'Ultra Premium', desc: 'The rarest and most prized grade. Extremely thin bark with a delicate, sweet aroma - the pinnacle of Ceylon cinnamon.', color: '#fff3cd' },
-  { grade: 'H1', tag: 'Premium', desc: 'High-grade sticks with a smooth texture, rich flavour profile, and superior oil content. Highly sought after in global markets.', color: '#ffe0b2' },
-  { grade: 'C5 Special', tag: 'Export Grade', desc: 'A superior commercial grade offering exceptional quality at scale, perfect for major food industry clients.', color: '#f3e5d0' },
+  { grade: 'Alba', tag: 'Ultra-thin Luxury', desc: 'The rarest and most prized grade. Extremely thin bark with a delicate, sweet aroma - the pinnacle of Ceylon cinnamon.', color: '#fff3cd', stars: 5 },
+  { grade: 'C5–C4', tag: 'Export Quality', desc: 'Reliable, consistent grades offering exceptional quality at scale. Perfect for major food industry clients and global manufacturers.', color: '#f3e5d0', stars: 4 },
+  { grade: 'Powder (H1-H2)', tag: 'Industrial / Powder', desc: 'Finely ground from robust H1 and H2 material, delivering an instant, aromatic flavour profile ideal for bakeries and specialty blends.', color: '#ffe0b2', stars: 4 },
 ];
 
 
@@ -122,7 +122,7 @@ export default function Home() {
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '16px' }}>
                 Ceylon cinnamon — <em style={{ fontFamily: 'var(--font-elegant)', color: 'var(--text-primary)' }}>Cinnamomum verum</em> — is the only "true" cinnamon in the world.
                 Unlike Cassia cinnamon, it is delicate, complex and naturally low in coumarin.
-                Golden Bark Exports has been bringing this extraordinary spice to the world's finest kitchens and markets for over two decades.
+                Golden Bark Exports was officially registered in 2025, continuing a long family tradition of cinnamon cultivation with a modern commitment to global excellence.
               </p>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '32px' }}>
                 We work directly with experienced peelers and farmers in Galle district,
@@ -133,10 +133,10 @@ export default function Home() {
                   [Leaf, 'Farm to Export', '100% traceability from certified organic farms'],
                   [Award, 'Premium Quality', 'Graded, sorted and inspected by experts'],
                   [Ship, 'Global Logistics', 'Reliable export to many countries worldwide'],
-                ].map(([Icon, title, desc]) => (
-                  <div className="intro-feature" key={title}>
+                ].map(([Icon, title, desc], i) => (
+                  <div className="intro-feature reveal" key={title} style={{ transitionDelay: `${i * 0.2}s` }}>
                     <div className="intro-feature-icon">
-                      <Icon size={18} />
+                      <Icon size={22} />
                     </div>
                     <div>
                       <div className="intro-feature-title">{title}</div>
@@ -156,7 +156,7 @@ export default function Home() {
       {/* ====== PRODUCTS PREVIEW ====== */}
       <section className="section products-preview">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="reveal-left" style={{ textAlign: 'center', marginBottom: '60px' }}>
             <div className="section-tag" style={{ justifyContent: 'center' }}>Product Range</div>
             <h2 className="section-title">
               Our Finest <span className="text-gold">Cinnamon Grades</span>
@@ -168,22 +168,25 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="preview-grid">
-            {products.map((p, i) => (
-              <div className="card preview-card reveal" key={p.grade} style={{ animationDelay: `${i * 0.15}s` }}>
-                <div className="preview-card-header">
-                  <span className="badge">{p.tag}</span>
-                  <span className="preview-grade">{p.grade}</span>
+          <div className="preview-scroll-container">
+            <div className="preview-track">
+              {/* Double the products for seamless infinite scroll */}
+              {[...products, ...products, ...products].map((p, i) => (
+                <div className="card preview-card" key={`${p.grade}-${i}`}>
+                  <div className="preview-card-header">
+                    <span className="badge">{p.tag}</span>
+                    <span className="preview-grade">{p.grade}</span>
+                  </div>
+                  <h3 className="preview-card-title">{p.grade} {p.grade === 'Alba' ? 'Grade' : ''}</h3>
+                  <p className="preview-card-desc">{p.desc}</p>
+                  <div className="preview-stars">
+                    {[...Array(p.stars || 4)].map((_, j) => (
+                      <Star key={j} size={12} fill="var(--gold-500)" color="var(--gold-500)" />
+                    ))}
+                  </div>
                 </div>
-                <h3 className="preview-card-title">{p.grade} Grade</h3>
-                <p className="preview-card-desc">{p.desc}</p>
-                <div className="preview-stars">
-                  {[...Array(p.grade === 'Alba' ? 5 : p.grade === 'H1' ? 4 : 4)].map((_, i) => (
-                    <Star key={i} size={12} fill="var(--gold-500)" color="var(--gold-500)" />
-                  ))}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '48px' }}>
@@ -198,7 +201,7 @@ export default function Home() {
       <section className="section why-section">
         <div className="container">
           <div className="why-grid">
-            <div className="reveal">
+            <div className="reveal-left">
               <div className="section-tag">Why Ceylon Cinnamon?</div>
               <h2 className="section-title">
                 Nature's Most<br /><span className="text-gold">Precious Spice</span>
@@ -225,7 +228,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="why-image-wrap reveal" style={{ animationDelay: '0.2s' }}>
+            <div className="why-image-wrap reveal-right" style={{ transitionDelay: '0.2s' }}>
               <img
                 src={cinnamonSticksImage}
                 alt="Ceylon Cinnamon Close Up"
