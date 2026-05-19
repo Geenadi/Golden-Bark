@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Package, Star, CheckCircle, X } from 'lucide-react';
 import './Products.css';
+import backgroundHero from '../assets/pro-background.jpg';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -22,35 +23,15 @@ const grades = [
     stars: 5,
     desc: 'The highest quality and most expensive tier of Ceylon cinnamon. These quills are exceptionally thin, ranging from 6 to 10 mm in diameter, characterised by their light golden-brown colour, very smooth surface, and a delicate, highly refined sweetness. Because of their fragile nature and the skill required to roll them, they are considered a premium product globally.',
     color: '#FFD700',
-    thickness: '6–10 mm diameter',
+    thickness: '60-10 mm diameter',
     origin: 'Sri Lanka',
     highlights: [
-      'Exceptionally thin, 6–10 mm diameter quills',
+      'Exceptionally thin, 6-10 mm diameter quills',
       'Light golden-brown colour with smooth surface',
       'Delicate, highly refined sweetness',
       'Requires skilled master peelers to produce',
       'Premium product for fine dining & luxury retail',
     ],
-    image: 'https://images.unsplash.com/photo-1588277759339-05d459f0714e?w=700&q=80&auto=format',
-  },
-  {
-    id: 'c5-special',
-    name: 'C5 Special',
-    subtitle: 'Continental Grade — Premium',
-    tag: 'Continental',
-    stars: 5,
-    desc: 'Part of the Continental category, C5 Special sits at the pinnacle of the C5 tier. These quills are slightly thicker than Alba, typically measuring between 10 and 12 mm, yet maintain a very smooth texture and pale appearance. They offer a powerful yet sweet aroma, highly sought after by European markets for their balance of aesthetic beauty and rich flavour.',
-    color: '#E8C84A',
-    thickness: '10–12 mm diameter',
-    origin: 'Sri Lanka',
-    highlights: [
-      'Smooth texture with pale, elegant appearance',
-      'Powerful yet sweet aroma',
-      'Highly sought after by European markets',
-      'Perfect balance of aesthetics and rich flavour',
-      'Ideal for premium retail and food service',
-    ],
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821eec058b?w=700&q=80&auto=format',
   },
   {
     id: 'c5',
@@ -60,7 +41,7 @@ const grades = [
     stars: 4,
     desc: 'A premium Continental grade offering excellent quality and consistency. C5 quills deliver the authentic sweetness and aroma of true Ceylon cinnamon, making them ideal for large-scale food production, branded retail, and export to international markets.',
     color: '#C9A84C',
-    thickness: '10–12 mm diameter',
+    thickness: '10-12 mm diameter',
     origin: 'Sri Lanka',
     highlights: [
       'Reliable, consistent Continental grade',
@@ -69,7 +50,6 @@ const grades = [
       'Available in high-volume export shipments',
       'Trusted by international food manufacturers',
     ],
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821eec058b?w=700&q=80&auto=format',
   },
   {
     id: 'c4',
@@ -79,16 +59,15 @@ const grades = [
     stars: 4,
     desc: 'A popular Continental choice that offers excellent quality at a more accessible price point than Alba or C5. The quills usually have a diameter of 13 to 15 mm. While thicker, they still possess a sweet fragrance and a relatively smooth bark, making them ideal for high-end retail packaging and culinary use.',
     color: '#A0742A',
-    thickness: '13–15 mm diameter',
+    thickness: '13-15 mm diameter',
     origin: 'Sri Lanka',
     highlights: [
       'Sweet fragrance with relatively smooth bark',
-      'Diameter of 13–15 mm',
+      'Diameter of 13-15 mm',
       'Excellent quality at an accessible price',
       'Ideal for high-end retail packaging',
       'Suitable for culinary and industrial use',
     ],
-    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=700&q=80&auto=format',
   },
   {
     id: 'h1',
@@ -107,7 +86,6 @@ const grades = [
       'Ideal for manufacturers needing strong cinnamon',
       'High cinnamaldehyde content for bold flavour',
     ],
-    image: 'https://images.unsplash.com/photo-1578900436920-2aa4cc7e5fd6?w=700&q=80&auto=format',
   },
   {
     id: 'h2',
@@ -126,7 +104,6 @@ const grades = [
       'Cost-efficient for large-scale grinding',
       'Available in bulk and industrial packaging',
     ],
-    image: 'https://images.unsplash.com/photo-1561406636-b80293969660?w=700&q=80&auto=format',
   },
   {
     id: 'm',
@@ -145,7 +122,6 @@ const grades = [
       'Ideal for Mexican beverages and desserts',
       'Complements bold, traditional flavour profiles',
     ],
-    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=700&q=80&auto=format',
   },
   {
     id: 'powder',
@@ -164,7 +140,6 @@ const grades = [
       'Consistent particle size throughout',
       'Available in bulk and retail packaging',
     ],
-    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=700&q=80&auto=format',
   },
 ];
 
@@ -176,45 +151,42 @@ function GradeModal({ grade, onClose }) {
         <button className="modal-close" onClick={onClose}>
           <X size={20} />
         </button>
-        <div className="modal-grid">
-          <img src={grade.image} alt={grade.name} className="modal-img" />
-          <div className="modal-content">
-            <span className="badge">{grade.tag}</span>
-            <h2 className="modal-title">
-              {grade.name} Grade
-              <span style={{ fontSize: '0.7em', opacity: 0.6, display: 'block', fontFamily: 'var(--font-body)', fontWeight: 400, letterSpacing: '2px', marginTop: '4px' }}>{grade.subtitle}</span>
-            </h2>
-            <div style={{ display: 'flex', gap: '4px', margin: '8px 0 16px' }}>
-              {[...Array(grade.stars)].map((_, i) => (
-                <Star key={i} size={14} fill="var(--gold-500)" color="var(--gold-500)" />
-              ))}
-              {[...Array(5 - grade.stars)].map((_, i) => (
-                <Star key={i} size={14} color="var(--dark-400)" />
-              ))}
-            </div>
-            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '0.9rem', marginBottom: '24px' }}>{grade.desc}</p>
-            <div className="modal-specs">
-              <div className="modal-spec">
-                <span className="modal-spec-label">Bark Thickness</span>
-                <span className="modal-spec-val">{grade.thickness}</span>
-              </div>
-              <div className="modal-spec">
-                <span className="modal-spec-label">Origin</span>
-                <span className="modal-spec-val">{grade.origin}</span>
-              </div>
-            </div>
-            <ul className="modal-highlights">
-              {grade.highlights.map(h => (
-                <li key={h}>
-                  <CheckCircle size={15} color="var(--gold-500)" />
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
-            <Link to="/contact" className="btn btn-gold" style={{ marginTop: '24px' }} onClick={onClose}>
-              Request This Grade <ArrowRight size={16} />
-            </Link>
+        <div className="modal-content" style={{ padding: '48px 40px' }}>
+          <span className="badge">{grade.tag}</span>
+          <h2 className="modal-title">
+            {grade.name} Grade
+            <span style={{ fontSize: '0.7em', opacity: 0.6, display: 'block', fontFamily: 'var(--font-body)', fontWeight: 400, letterSpacing: '2px', marginTop: '4px' }}>{grade.subtitle}</span>
+          </h2>
+          <div style={{ display: 'flex', gap: '4px', margin: '8px 0 16px' }}>
+            {[...Array(grade.stars)].map((_, i) => (
+              <Star key={i} size={14} fill="var(--gold-500)" color="var(--gold-500)" />
+            ))}
+            {[...Array(5 - grade.stars)].map((_, i) => (
+              <Star key={i} size={14} color="var(--dark-400)" />
+            ))}
           </div>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '0.9rem', marginBottom: '24px' }}>{grade.desc}</p>
+          <div className="modal-specs">
+            <div className="modal-spec">
+              <span className="modal-spec-label">Bark Thickness</span>
+              <span className="modal-spec-val">{grade.thickness}</span>
+            </div>
+            <div className="modal-spec">
+              <span className="modal-spec-label">Origin</span>
+              <span className="modal-spec-val">{grade.origin}</span>
+            </div>
+          </div>
+          <ul className="modal-highlights">
+            {grade.highlights.map(h => (
+              <li key={h}>
+                <CheckCircle size={15} color="var(--gold-500)" />
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+          <Link to="/contact" className="btn btn-gold" style={{ marginTop: '24px' }} onClick={onClose}>
+            Request This Grade <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </div>
@@ -231,7 +203,7 @@ export default function Products() {
       <section className="page-hero">
         <div className="page-hero-bg">
           <img
-            src="https://images.unsplash.com/photo-1578900436920-2aa4cc7e5fd6?w=1600&q=80&auto=format"
+            src={backgroundHero}
             alt="Ceylon Cinnamon Products"
             className="page-hero-img"
           />
@@ -263,35 +235,112 @@ export default function Products() {
             </p>
           </div>
 
-          <div className="grades-grid" style={{ marginTop: '60px' }}>
-            {grades.map((g, i) => (
-              <div
-                className="card grade-card reveal"
-                key={g.id}
-                style={{ animationDelay: `${i * 0.1}s` }}
-                onClick={() => setActiveGrade(g)}
-              >
-                <div className="grade-card-img-wrap">
-                  <img src={g.image} alt={g.name} className="grade-card-img" />
-                  <div className="grade-card-img-overlay" />
-                  <span className="badge grade-card-badge">{g.tag}</span>
-                </div>
-                <div className="grade-card-body">
-                  <div className="grade-card-header">
-                    <div>
-                      <div className="grade-card-name" style={{ color: g.color }}>{g.name}</div>
-                      <div className="grade-card-sub">{g.subtitle}</div>
+          {/* Cinnamon Quills Subsection */}
+          <div className="catalogue-category-section" style={{ marginBottom: '60px', marginTop: '40px' }}>
+            <div className="category-header">
+              <h3 className="category-title">Ceylon Cinnamon Quills</h3>
+              <p className="category-subtitle">Hand-rolled premium quills graded by diameter, color, and density.</p>
+            </div>
+            <div className="grades-grid">
+              {grades.filter(g => g.id !== 'powder').map((g, i) => (
+                <div
+                  className="card grade-card reveal"
+                  key={g.id}
+                  style={{ animationDelay: `${i * 0.08}s` }}
+                  onClick={() => setActiveGrade(g)}
+                >
+                  <div className="grade-card-watermark">{g.name[0]}</div>
+                  <div className="grade-card-body">
+                    <div className="grade-card-content-left">
+                      <div className="grade-card-top-bar">
+                        <span className="grade-category-tag">{g.tag}</span>
+                        <div className="grade-stars">
+                          {[...Array(g.stars)].map((_, j) => (
+                            <Star key={j} size={11} fill="var(--gold-400)" color="var(--gold-400)" />
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="grade-card-title-section">
+                        <h3 className="grade-card-name" style={{ color: g.color }}>{g.name}</h3>
+                        <span className="grade-card-subtitle">{g.subtitle}</span>
+                      </div>
+                      
+                      <p className="grade-card-desc">{g.desc.slice(0, 130)}...</p>
                     </div>
-                    <div style={{ display: 'flex', gap: '2px' }}>
-                      {[...Array(g.stars)].map((_, j) => (
-                        <Star key={j} size={12} fill="var(--gold-500)" color="var(--gold-500)" />
-                      ))}
+                    
+                    <div className="grade-card-content-right">
+                      <div className="grade-card-specs-row">
+                        <div className="grade-card-spec">
+                          <span className="spec-label">Thickness</span>
+                          <span className="spec-value">{g.thickness}</span>
+                        </div>
+                        <div className="grade-card-spec">
+                          <span className="spec-label">Origin</span>
+                          <span className="spec-value">{g.origin}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="grade-card-action">
+                        <span className="action-text">Explore</span>
+                        <ArrowRight size={14} className="action-arrow" />
+                      </div>
                     </div>
                   </div>
-                  <p className="grade-card-desc">{g.desc.slice(0, 110)}...</p>
-                  <div className="grade-card-meta">
-                    <span>{g.thickness}</span>
-                    <span className="grade-card-view">View Details →</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Cinnamon Powder Subsection */}
+          <div className="catalogue-category-section" style={{ marginBottom: '20px' }}>
+            <div className="category-header">
+              <h3 className="category-title">Ceylon Cinnamon Powder</h3>
+              <p className="category-subtitle">Ready-to-use premium fine powder ground from robust Hamburg-grade material.</p>
+            </div>
+            
+            {grades.filter(g => g.id === 'powder').map((g) => (
+              <div
+                className="card grade-card grade-card-wide reveal"
+                key={g.id}
+                onClick={() => setActiveGrade(g)}
+              >
+                <div className="grade-card-watermark">{g.name[0]+g.name[1]}</div>
+                <div className="grade-card-body">
+                  <div className="grade-card-content-left">
+                    <div className="grade-card-top-bar">
+                      <span className="grade-category-tag">{g.tag}</span>
+                      <div className="grade-stars">
+                        {[...Array(g.stars)].map((_, j) => (
+                          <Star key={j} size={11} fill="var(--gold-400)" color="var(--gold-400)" />
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="grade-card-title-section">
+                      <h3 className="grade-card-name" style={{ color: g.color }}>{g.name}</h3>
+                      <span className="grade-card-subtitle">{g.subtitle}</span>
+                    </div>
+                    
+                    <p className="grade-card-desc">{g.desc}</p>
+                  </div>
+                  
+                  <div className="grade-card-content-right">
+                    <div className="grade-card-specs-row">
+                      <div className="grade-card-spec">
+                        <span className="spec-label">Thickness</span>
+                        <span className="spec-value">{g.thickness}</span>
+                      </div>
+                      <div className="grade-card-spec">
+                        <span className="spec-label">Origin</span>
+                        <span className="spec-value">{g.origin}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="grade-card-action">
+                      <span className="action-text">Explore</span>
+                      <ArrowRight size={14} className="action-arrow" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -324,14 +373,13 @@ export default function Products() {
               </thead>
               <tbody>
                 {[
-                  ['Alba', 'Ultra-thin Luxury', '6–10 mm diameter', 'Luxury retail, fine dining', 'Limited'],
-                  ['C5 Special', 'Continental — Premium', '10–12 mm diameter', 'European markets, premium retail', 'Regular'],
-                  ['C5', 'Continental', '10–12 mm diameter', 'Large-scale food production', 'High Volume'],
-                  ['C4', 'Continental — Popular', '13–15 mm diameter', 'High-end retail, culinary use', 'High Volume'],
+                  ['Alba', 'Ultra-thin Luxury', '6-10 mm diameter', 'Luxury retail, fine dining', 'Limited'],
+                  ['C5', 'Continental', '10-12 mm diameter', 'Large-scale food production', 'High Volume'],
+                  ['C4', 'Continental — Popular', '13-15 mm diameter', 'High-end retail, culinary use', 'High Volume'],
                   ['H1', 'Hamburg — Top Tier', 'Up to 23 mm diameter', 'Traditional cooking, manufacturers', 'Regular'],
                   ['H2', 'Hamburg — Economical', 'Thick & fibrous', 'Grinding, cinnamon powder', 'Regular'],
-                  ['M Grade', 'Mexican', 'Thinner than H grades', 'Latin American beverages & desserts', 'Regular'],
-                  ['Cinnamon Powder', 'Ready to Use', 'Fine Powder', 'Bakeries, confectioneries, retail', 'Regular'],
+                  ['M', 'Mexican', 'Thinner than H grades', 'Latin American beverages & desserts', 'Regular'],
+                  ['Powder', 'Ready to Use', 'Fine Powder', 'Bakeries, confectioneries, retail', 'Regular'],
                 ].map(([grade, tier, thick, best, avail]) => (
                   <tr key={grade}>
                     <td><strong style={{ color: 'var(--gold-500)', fontFamily: 'var(--font-display)' }}>{grade}</strong></td>

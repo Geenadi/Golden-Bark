@@ -77,15 +77,18 @@ import Contact from './pages/Contact';
    CUSTOM CURSOR + SPARKLE TRAIL
 ========================================= */
 function CustomCursor() {
+  const cursorRef = useRef(null);
   const dotRef = useRef(null);
-  const ringRef = useRef(null);
   const lastTrail = useRef(0);
 
   useEffect(() => {
+    let reqId;
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+
     const move = (e) => {
-      const x = e.clientX, y = e.clientY;
-      if (dotRef.current) { dotRef.current.style.left = x + 'px'; dotRef.current.style.top = y + 'px'; }
-      if (ringRef.current) { ringRef.current.style.left = x + 'px'; ringRef.current.style.top = y + 'px'; }
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
       // Sparkle trail
       const now = Date.now();
@@ -94,28 +97,50 @@ function CustomCursor() {
         const sz = Math.random() * 3 + 2;
         const spark = document.createElement('div');
         spark.className = 'cursor-trail';
-        spark.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;`;
+        spark.style.cssText = `left:${mouseX}px;top:${mouseY}px;width:${sz}px;height:${sz}px;`;
         document.body.appendChild(spark);
         setTimeout(() => spark.remove(), 750);
       }
     };
 
-    const addHover = () => ringRef.current?.classList.add('hovered');
-    const removeHover = () => ringRef.current?.classList.remove('hovered');
+    const updatePosition = () => {
+      const speed = 0.2;
+      currentX += (mouseX - currentX) * speed;
+      currentY += (mouseY - currentY) * speed;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+      }
+
+      reqId = requestAnimationFrame(updatePosition);
+    };
+
+    const addHover = () => dotRef.current?.classList.add('hovered');
+    const removeHover = () => dotRef.current?.classList.remove('hovered');
 
     document.addEventListener('mousemove', move);
-    document.querySelectorAll('a, button, .card, input, textarea, select').forEach(el => {
+    reqId = requestAnimationFrame(updatePosition);
+
+    const interactiveEls = document.querySelectorAll('a, button, .card, input, textarea, select');
+    interactiveEls.forEach(el => {
       el.addEventListener('mouseenter', addHover);
       el.addEventListener('mouseleave', removeHover);
     });
-    return () => document.removeEventListener('mousemove', move);
+
+    return () => {
+      document.removeEventListener('mousemove', move);
+      cancelAnimationFrame(reqId);
+      interactiveEls.forEach(el => {
+        el.removeEventListener('mouseenter', addHover);
+        el.removeEventListener('mouseleave', removeHover);
+      });
+    };
   }, []);
 
   return (
-    <>
+    <div className="custom-cursor" ref={cursorRef}>
       <div className="cursor-dot" ref={dotRef} />
-      <div className="cursor-ring" ref={ringRef} />
-    </>
+    </div>
   );
 }
 
@@ -209,16 +234,20 @@ function Footer() {
         <div className="footer-grid">
           {/* Brand */}
           <div>
-            <img src="/Logo-01.png" alt="Golden Bark" className="footer-brand-logo" onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src="/favicon.png" alt="Golden Bark" className="footer-brand-logo" onError={(e) => { e.target.style.display = 'none'; }} />
             <p className="footer-brand-desc">
               Golden Bark Exports Pvt Ltd is a premium Ceylon cinnamon exporter committed to delivering the finest quality spices from the heart of Sri Lanka to the world.
             </p>
             <div className="footer-social">
-              {[Globe, Share2, MessageCircle, Users].map((Icon, i) => (
-                <a key={i} href="#" className="footer-social-link" aria-label="Social">
-                  <Icon size={14} />
-                </a>
-              ))}
+              <a href="https://www.facebook.com/share/1Dz9YGvnmU/?mibextid=wwXIfr" className="footer-social-link" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" className="footer-social-link" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </a>
+              <a href="#" className="footer-social-link" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+              </a>
             </div>
           </div>
 
@@ -240,7 +269,7 @@ function Footer() {
           <div>
             <h4 className="footer-col-title">Our Products</h4>
             <ul className="footer-links">
-              {['Alba Grade', 'C5 Special', 'C5 Grade', 'C4 Grade', 'H1 Grade', 'H2 Grade', 'M Grade', 'Cinnamon Powder'].map(p => (
+              {['Alba', 'C4/C5', 'H1/H2', 'M', 'Powder'].map(p => (
                 <li key={p}>
                   <Link to="/products" className="footer-link">
                     <ChevronRight size={12} /> {p}
@@ -274,9 +303,6 @@ function Footer() {
           <p className="footer-copy">
             © {new Date().getFullYear()} Golden Bark Exports Pvt Ltd. All rights reserved.
           </p>
-          <div className="footer-cert">
-            <span className="footer-cert-badge">Organic</span>
-          </div>
         </div>
       </div>
     </footer>

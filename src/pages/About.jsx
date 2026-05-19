@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Target, Eye, Heart, Users, Sprout, Award } from 'lucide-react';
 import './About.css';
-import backgroundHero from '../assets/background.jpg';
+import backgroundHero from '../assets/backgrd.jpg';
 import peelersImage from '../assets/cinnamon_peelers.png';
 import albaImage from '../assets/alba.jpg';
 

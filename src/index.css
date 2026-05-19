@@ -94,7 +94,6 @@ body {
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
-  cursor: none;
 }
 
 a {
@@ -114,36 +113,29 @@ ul {
 /* ============================================
    CUSTOM CURSOR
 ============================================ */
-.cursor-dot {
+.custom-cursor {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+}
+
+.cursor-dot {
+  position: absolute;
   width: 8px;
   height: 8px;
   background: var(--gold-500);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease, background 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease;
 }
-
-.cursor-ring {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid var(--gold-500);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-  opacity: 0.7;
-}
-
-.cursor-ring.hovered {
-  width: 56px;
-  height: 56px;
-  opacity: 1;
-  border-color: var(--gold-400);
+.cursor-dot.hovered {
+  transform: translate(-50%, -50%) scale(1.8);
+  background-color: var(--gold-400);
 }
 
 /* ============================================
