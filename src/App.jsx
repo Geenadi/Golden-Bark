@@ -3,6 +3,70 @@ import { BrowserRouter as Router, Routes, Route, NavLink, Link, useLocation } fr
 import { Menu, X, Phone, Mail, MapPin, Globe, Share2, MessageCircle, Users, ChevronRight, ChevronDown, MessageSquare } from 'lucide-react';
 import './index.css';
 
+/* =========================================
+   GOLD PARTICLE CANVAS
+========================================= */
+function GoldParticles() {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    resize();
+    window.addEventListener('resize', resize);
+    const GOLD = ['rgba(201,168,76,0.9)', 'rgba(255,215,0,0.8)', 'rgba(184,134,11,0.7)', 'rgba(255,224,130,0.6)'];
+    const particles = Array.from({ length: 55 }, (_, i) => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 1.4 + 0.3,
+      speedY: -(Math.random() * 0.28 + 0.06),
+      phase: Math.random() * Math.PI * 2,
+      opacity: Math.random() * 0.4 + 0.1,
+      color: GOLD[i % GOLD.length],
+    }));
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const t = Date.now() * 0.001;
+      particles.forEach(p => {
+        p.y += p.speedY;
+        p.x += Math.sin(t * 0.6 + p.phase) * 0.18;
+        if (p.y < -5) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; }
+        const alpha = p.opacity * (0.5 + 0.5 * Math.sin(t * 0.8 + p.phase));
+        ctx.save();
+        ctx.globalAlpha = alpha * 0.5;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        ctx.restore();
+      });
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
+  }, []);
+  return <canvas ref={canvasRef} className="gold-particles-canvas" />;
+}
+
+/* =========================================
+   SCROLL PROGRESS BAR
+========================================= */
+function ScrollProgressBar() {
+  const barRef = useRef(null);
+  useEffect(() => {
+    const update = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+      if (barRef.current) barRef.current.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, []);
+  return <div className="scroll-progress" ref={barRef} />;
+}
+
 // Pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -10,21 +74,29 @@ import Products from './pages/Products';
 import Contact from './pages/Contact';
 
 /* =========================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR + SPARKLE TRAIL
 ========================================= */
 function CustomCursor() {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
+  const lastTrail = useRef(0);
 
   useEffect(() => {
     const move = (e) => {
-      if (dotRef.current) {
-        dotRef.current.style.left = e.clientX + 'px';
-        dotRef.current.style.top = e.clientY + 'px';
-      }
-      if (ringRef.current) {
-        ringRef.current.style.left = e.clientX + 'px';
-        ringRef.current.style.top = e.clientY + 'px';
+      const x = e.clientX, y = e.clientY;
+      if (dotRef.current) { dotRef.current.style.left = x + 'px'; dotRef.current.style.top = y + 'px'; }
+      if (ringRef.current) { ringRef.current.style.left = x + 'px'; ringRef.current.style.top = y + 'px'; }
+
+      // Sparkle trail
+      const now = Date.now();
+      if (now - lastTrail.current > 55) {
+        lastTrail.current = now;
+        const sz = Math.random() * 3 + 2;
+        const spark = document.createElement('div');
+        spark.className = 'cursor-trail';
+        spark.style.cssText = `left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;`;
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 750);
       }
     };
 
@@ -36,7 +108,6 @@ function CustomCursor() {
       el.addEventListener('mouseenter', addHover);
       el.addEventListener('mouseleave', removeHover);
     });
-
     return () => document.removeEventListener('mousemove', move);
   }, []);
 
@@ -79,7 +150,7 @@ function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            <img src="/Logo-01.png" alt="Golden Bark Logo" onError={(e) => { e.target.style.display='none'; }} />
+            <img src="/Logo-01.png" alt="Golden Bark Logo" onError={(e) => { e.target.style.display = 'none'; }} />
             <div className="navbar-logo-text">
               <span className="navbar-logo-name">Golden Bark</span>
               <span className="navbar-logo-sub">Exports Pvt Ltd</span>
@@ -138,7 +209,7 @@ function Footer() {
         <div className="footer-grid">
           {/* Brand */}
           <div>
-            <img src="/Logo-01.png" alt="Golden Bark" className="footer-brand-logo" onError={(e) => { e.target.style.display='none'; }} />
+            <img src="/Logo-01.png" alt="Golden Bark" className="footer-brand-logo" onError={(e) => { e.target.style.display = 'none'; }} />
             <p className="footer-brand-desc">
               Golden Bark Exports Pvt Ltd is a premium Ceylon cinnamon exporter committed to delivering the finest quality spices from the heart of Sri Lanka to the world.
             </p>
@@ -169,7 +240,7 @@ function Footer() {
           <div>
             <h4 className="footer-col-title">Our Products</h4>
             <ul className="footer-links">
-              {['Alba Grade', 'H1 Grade', 'H2 Grade', 'C4 Grade', 'C5 Grade', 'Cinnamon Powder'].map(p => (
+              {['Alba Grade', 'C5 Special', 'C5 Grade', 'C4 Grade', 'H1 Grade', 'H2 Grade', 'M Grade', 'Cinnamon Powder'].map(p => (
                 <li key={p}>
                   <Link to="/products" className="footer-link">
                     <ChevronRight size={12} /> {p}
@@ -221,12 +292,12 @@ function Layout({ children }) {
       <Navbar />
       <main>{children}</main>
       <Footer />
-      
+
       {/* Floating WhatsApp Button */}
-      <a 
-        href="https://wa.me/94706935553" 
-        className="whatsapp-float" 
-        target="_blank" 
+      <a
+        href="https://wa.me/94706935553"
+        className="whatsapp-float"
+        target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact us on WhatsApp"
       >
@@ -243,6 +314,8 @@ function Layout({ children }) {
 export default function App() {
   return (
     <Router>
+      <GoldParticles />
+      <ScrollProgressBar />
       <CustomCursor />
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />

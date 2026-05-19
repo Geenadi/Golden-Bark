@@ -18,9 +18,8 @@ function useScrollReveal() {
 
 const timeline = [
   { year: '2025', title: 'Official Registration', desc: 'Golden Bark Exports Pvt Ltd was officially incorporated, marking the beginning of our journey to formalise Sri Lanka\'s cinnamon export sector.' },
-  { year: '2025', title: 'Global Operations', desc: 'Established our primary export hub in Colombo, connecting directly with premium spice markets in Europe and North America.' },
-  { year: '2025', title: 'Certification Milestone', desc: 'Successfully achieved initial quality certifications, ensuring our processes meet international food safety standards.' },
-  { year: '2025', title: 'Network Expansion', desc: 'Consolidated our network of traditional partner farms across Galle, ensuring 100% traceability for every quill.' },
+  { year: '2025', title: 'Global Operations', desc: 'Established our primary export hub in Ambalangoda.'},
+  { year: '2025', title: 'Network Expansion', desc: 'Consolidated our network of traditional partner farms across Galle district.' },
   { year: 'Future', title: 'Global Leadership', desc: 'Aiming to become the most trusted name in Ceylon cinnamon, setting new standards for quality and ethical trade.' },
 ];
 

@@ -3,7 +3,9 @@
 ============================================ */
 
 /* Page hero shared styles are in About.css */
-.page-hero { padding-top: 80px; }
+.page-hero {
+  padding-top: 80px;
+}
 
 /* Grades Grid */
 .grades-grid {
@@ -31,12 +33,14 @@
   transition: transform 0.6s ease;
 }
 
-.grade-card:hover .grade-card-img { transform: scale(1.08); }
+.grade-card:hover .grade-card-img {
+  transform: scale(1.08);
+}
 
 .grade-card-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
 }
 
 .grade-card-badge {
@@ -94,10 +98,14 @@
   transition: letter-spacing var(--transition-base);
 }
 
-.grade-card:hover .grade-card-view { letter-spacing: 1px; }
+.grade-card:hover .grade-card-view {
+  letter-spacing: 1px;
+}
 
 /* Compare Table */
-.compare-section { background: var(--dark-850); }
+.compare-section {
+  background: var(--dark-850);
+}
 
 .compare-table-wrap {
   overflow-x: auto;
@@ -112,7 +120,7 @@
 }
 
 .compare-table th {
-  background: rgba(201,168,76,0.08);
+  background: rgba(201, 168, 76, 0.08);
   padding: 18px 20px;
   text-align: left;
   font-size: 10px;
@@ -129,13 +137,18 @@
   vertical-align: middle;
 }
 
-.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
 
-.compare-table tr:hover td { background: rgba(201,168,76,0.03); }
+.compare-table tr:hover td {
+  background: rgba(201, 168, 76, 0.03);
+}
 
 .avail-dot {
   display: inline-block;
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #4caf77;
   margin-right: 8px;
@@ -145,7 +158,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -168,12 +181,14 @@
 
 .modal-close {
   position: absolute;
-  top: 20px; right: 20px;
+  top: 20px;
+  right: 20px;
   z-index: 10;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--border-gold);
   color: var(--gold-500);
-  width: 36px; height: 36px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -182,7 +197,9 @@
   transition: all var(--transition-fast);
 }
 
-.modal-close:hover { background: rgba(201,168,76,0.15); }
+.modal-close:hover {
+  background: rgba(201, 168, 76, 0.15);
+}
 
 .modal-grid {
   display: grid;
@@ -214,14 +231,29 @@
   gap: 24px;
   margin-bottom: 20px;
   padding: 16px;
-  background: rgba(201,168,76,0.05);
+  background: rgba(201, 168, 76, 0.05);
   border-radius: var(--radius-md);
   border: 1px solid var(--border-gold);
 }
 
-.modal-spec { display: flex; flex-direction: column; gap: 4px; }
-.modal-spec-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
-.modal-spec-val { font-size: 0.875rem; color: var(--text-primary); font-weight: 500; }
+.modal-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-spec-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.modal-spec-val {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
 
 .modal-highlights {
   display: flex;
@@ -243,6 +275,7 @@
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
 .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
@@ -252,17 +285,31 @@
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .grades-grid { grid-template-columns: repeat(2, 1fr); }
+  .grades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .grades-grid { grid-template-columns: 1fr; }
-  .modal-grid { grid-template-columns: 1fr; }
-  .modal-img { min-height: 220px; border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
-  .modal-content { padding: 24px 20px; }
+  .grades-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-img {
+    min-height: 220px;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .modal-content {
+    padding: 24px 20px;
+  }
 }

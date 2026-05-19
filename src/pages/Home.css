@@ -251,8 +251,10 @@
 .intro-feature::after {
   content: '';
   position: absolute;
-  left: 0; bottom: 0;
-  width: 100%; height: 2px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
   background: var(--gold-gradient-h);
   transform: scaleX(0);
   transform-origin: left;
@@ -328,8 +330,13 @@
 }
 
 @keyframes scrollSide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .preview-card {

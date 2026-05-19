@@ -16,17 +16,17 @@ const contactInfo = [
   {
     Icon: Phone,
     title: 'Call Us',
-    lines: ['+94 11 234 5678', '+94 77 890 1234 (WhatsApp)'],
+    lines: ['+94 70 693 5553'],
   },
   {
     Icon: Mail,
     title: 'Email Us',
-    lines: ['info@goldenbark.lk', 'exports@goldenbark.lk'],
+    lines: ['goldenbarkexport@gmail.com'],
   },
   {
     Icon: Clock,
     title: 'Business Hours',
-    lines: ['Monday – Friday: 8:30AM – 5:30PM', 'Saturday: 9:00AM – 1:00PM'],
+    lines: ['Monday - Sunday: 8:30AM - 5:30PM'],
   },
 ];
 
@@ -84,7 +84,7 @@ export default function Contact() {
               </h2>
               <div className="gold-divider" />
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '40px', fontSize: '0.9rem' }}>
-                Whether you're a new buyer looking to place your first order, a distributor seeking long-term supply, 
+                Whether you're a new buyer looking to place your first order, a distributor seeking long-term supply,
                 or a brand interested in private labelling — our team is ready to assist you.
               </p>
 
@@ -230,31 +230,6 @@ export default function Contact() {
                   </button>
                 </form>
               )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---- Map / Location ---- */}
-      <section className="section map-section">
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '48px' }} className="reveal">
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Find Us</div>
-            <h2 className="section-title">
-              Our <span className="text-gold">Location</span>
-            </h2>
-          </div>
-          <div className="map-wrap reveal" style={{ animationDelay: '0.2s' }}>
-            <iframe
-              title="Golden Bark Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63371.81386671543!2d79.8!3d6.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1715000000000"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <div className="map-label glass">
-              <MapPin size={16} color="var(--gold-500)" />
-              <span>Colombo, Sri Lanka</span>
             </div>
           </div>
         </div>

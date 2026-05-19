@@ -22,9 +22,14 @@ function useScrollReveal() {
 }
 
 const products = [
-  { grade: 'Alba', tag: 'Ultra-thin Luxury', desc: 'The rarest and most prized grade. Extremely thin bark with a delicate, sweet aroma - the pinnacle of Ceylon cinnamon.', color: '#fff3cd', stars: 5 },
-  { grade: 'C5–C4', tag: 'Export Quality', desc: 'Reliable, consistent grades offering exceptional quality at scale. Perfect for major food industry clients and global manufacturers.', color: '#f3e5d0', stars: 4 },
-  { grade: 'Powder (H1-H2)', tag: 'Industrial / Powder', desc: 'Finely ground from robust H1 and H2 material, delivering an instant, aromatic flavour profile ideal for bakeries and specialty blends.', color: '#ffe0b2', stars: 4 },
+  { grade: 'Alba', tag: 'Ultra-thin Luxury', desc: 'The rarest and most prized grade. Exceptionally thin, 6–10 mm quills with light golden-brown colour, smooth surface, and a delicate, highly refined sweetness.', color: '#fff3cd', stars: 5 },
+  { grade: 'C5 Special', tag: 'Continental — Premium', desc: 'Slightly thicker than Alba (10–12 mm), with very smooth texture and pale appearance. A powerful yet sweet aroma highly sought after by European markets.', color: '#f3e5d0', stars: 5 },
+  { grade: 'C5', tag: 'Continental', desc: 'A premium Continental grade with authentic Ceylon cinnamon sweetness and aroma. Ideal for large-scale food production and export to international markets.', color: '#f3e5d0', stars: 4 },
+  { grade: 'C4', tag: 'Continental — Popular', desc: 'Excellent quality at an accessible price. Quills of 13–15 mm diameter with sweet fragrance and smooth bark, perfect for high-end retail packaging.', color: '#ffe0b2', stars: 4 },
+  { grade: 'H1', tag: 'Hamburg — Top Tier', desc: 'Significantly thicker quills (up to 23 mm), darker and sturdier. Prized for its robust, spicy flavour, ideal for traditional cooking and bold spice blends.', color: '#ffe0b2', stars: 3 },
+  { grade: 'H2', tag: 'Hamburg — Economical', desc: 'Thicker, more fibrous than H1 with a rougher surface. Strong, authentic flavour makes it a staple for grinding into high-quality cinnamon powder.', color: '#ffe0b2', stars: 3 },
+  { grade: 'M Grade', tag: 'Mexican', desc: 'Specifically popular in Latin American markets. Rougher texture with reddish-brown hue, known for a pungent, sharp aroma and bold, distinct taste.', color: '#f3e5d0', stars: 3 },
+  { grade: 'Cinnamon Powder', tag: 'Ready to Use', desc: 'Finely ground from premium H1 & H2 material, delivering an instant, robust aromatic flavour ideal for bakeries, confectioneries, and retail spice jars.', color: '#ffe0b2', stars: 4 },
 ];
 
 
@@ -191,7 +196,7 @@ export default function Home() {
 
           <div style={{ textAlign: 'center', marginTop: '48px' }}>
             <Link to="/products" className="btn btn-gold">
-              View All 6 Grades <ArrowRight size={16} />
+              View All 8 Grades <ArrowRight size={16} />
             </Link>
           </div>
         </div>

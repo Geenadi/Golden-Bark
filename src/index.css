@@ -17,7 +17,7 @@
   --gold-800: #8B6914;
   --gold-gradient: linear-gradient(135deg, #C9A84C 0%, #FFD700 40%, #B8860B 70%, #C9A84C 100%);
   --gold-gradient-h: linear-gradient(90deg, #C9A84C 0%, #FFD700 50%, #B8860B 100%);
-  --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(255,215,0,0.4) 50%, transparent 100%);
+  --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.4) 50%, transparent 100%);
 
   /* Black / Dark Palette */
   --black: #000000;
@@ -43,12 +43,12 @@
   /* Borders */
   --border-gold: rgba(201, 168, 76, 0.3);
   --border-gold-strong: rgba(201, 168, 76, 0.7);
-  --border-dark: rgba(255,255,255,0.06);
+  --border-dark: rgba(255, 255, 255, 0.06);
 
   /* Shadows */
   --shadow-gold: 0 0 30px rgba(201, 168, 76, 0.2);
   --shadow-gold-strong: 0 0 50px rgba(201, 168, 76, 0.4);
-  --shadow-card: 0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
 
   /* Typography */
   --font-display: 'Cinzel', serif;
@@ -74,7 +74,9 @@
 /* ============================================
    RESET & BASE
 ============================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -105,7 +107,9 @@ img {
   display: block;
 }
 
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
 /* ============================================
    CUSTOM CURSOR
@@ -148,9 +152,11 @@ ul { list-style: none; }
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--dark-900);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--gold-gradient);
   border-radius: 4px;
@@ -166,7 +172,9 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 20px; }
+  .container {
+    padding: 0 20px;
+  }
 }
 
 /* ============================================
@@ -179,8 +187,13 @@ ul { list-style: none; }
   background-clip: text;
 }
 
-.font-display { font-family: var(--font-display); }
-.font-elegant { font-family: var(--font-elegant); }
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-elegant {
+  font-family: var(--font-elegant);
+}
 
 /* ============================================
    SECTION
@@ -264,13 +277,17 @@ ul { list-style: none; }
 .btn::after {
   content: '';
   position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
   background: var(--gold-shimmer);
   transition: left 0.5s ease;
 }
 
-.btn:hover::after { left: 100%; }
+.btn:hover::after {
+  left: 100%;
+}
 
 .btn-gold {
   background: var(--gold-gradient);
@@ -312,7 +329,7 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -323,14 +340,21 @@ ul { list-style: none; }
   box-shadow: var(--shadow-card), var(--shadow-gold);
 }
 
-.card:hover::before { opacity: 1; }
+.card:hover::before {
+  opacity: 1;
+}
 
 /* ============================================
    GOLD LINE ANIMATION
 ============================================ */
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes fadeInUp {
@@ -338,6 +362,7 @@ ul { list-style: none; }
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -345,23 +370,47 @@ ul { list-style: none; }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes rotateGold {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
-  50% { box-shadow: 0 0 0 15px rgba(201,168,76,0); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 15px rgba(201, 168, 76, 0);
+  }
 }
 
 .animate-fadeInUp {
@@ -393,7 +442,7 @@ ul { list-style: none; }
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 100px;
-  background: rgba(201,168,76,0.12);
+  background: rgba(201, 168, 76, 0.12);
   color: var(--gold-500);
   border: 1px solid var(--border-gold);
 }
@@ -430,10 +479,12 @@ ul { list-style: none; }
 
 .form-control:focus {
   border-color: var(--gold-500);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
 }
 
-.form-control::placeholder { color: var(--text-muted); }
+.form-control::placeholder {
+  color: var(--text-muted);
+}
 
 textarea.form-control {
   min-height: 130px;
@@ -466,7 +517,9 @@ textarea.form-control {
 ============================================ */
 .navbar {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   padding: 0 32px;
   transition: all var(--transition-base);
@@ -478,7 +531,7 @@ textarea.form-control {
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-gold);
   padding: 0 32px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 .navbar-inner {
@@ -500,7 +553,7 @@ textarea.form-control {
 .navbar-logo img {
   height: 200px;
   width: auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
   transition: transform var(--transition-base);
 }
 
@@ -546,8 +599,10 @@ textarea.form-control {
 .navbar-link::after {
   content: '';
   position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 1px;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
   background: var(--gold-gradient-h);
   transition: width var(--transition-base);
 }
@@ -590,7 +645,7 @@ textarea.form-control {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8,8,8,0.98);
+  background: rgba(8, 8, 8, 0.98);
   z-index: 999;
   flex-direction: column;
   align-items: center;
@@ -598,7 +653,9 @@ textarea.form-control {
   gap: 40px;
 }
 
-.mobile-menu.open { display: flex; }
+.mobile-menu.open {
+  display: flex;
+}
 
 .mobile-menu .navbar-link {
   font-size: 20px;
@@ -606,8 +663,13 @@ textarea.form-control {
 }
 
 @media (max-width: 900px) {
-  .navbar-nav { display: none; }
-  .navbar-hamburger { display: flex; }
+  .navbar-nav {
+    display: none;
+  }
+
+  .navbar-hamburger {
+    display: flex;
+  }
 }
 
 /* ============================================
@@ -644,7 +706,8 @@ textarea.form-control {
 }
 
 .footer-social-link {
-  width: 38px; height: 38px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: 1px solid var(--border-gold);
   display: flex;
@@ -655,7 +718,7 @@ textarea.form-control {
 }
 
 .footer-social-link:hover {
-  background: rgba(201,168,76,0.1);
+  background: rgba(201, 168, 76, 0.1);
   border-color: var(--gold-500);
   transform: translateY(-2px);
 }
@@ -684,7 +747,9 @@ textarea.form-control {
   gap: 8px;
 }
 
-.footer-link:hover { color: var(--gold-500); }
+.footer-link:hover {
+  color: var(--gold-500);
+}
 
 .footer-contact-item {
   display: flex;
@@ -731,12 +796,23 @@ textarea.form-control {
 }
 
 @media (max-width: 1024px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 600px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
 }
 
 /* ============================================
@@ -750,14 +826,16 @@ textarea.form-control {
    RESPONSIVE
 ============================================ */
 @media (max-width: 768px) {
-  :root { --section-py: 70px; }
+  :root {
+    --section-py: 70px;
+  }
 }
 
 /* ============================================
    SELECTION
 ============================================ */
 ::selection {
-  background: rgba(201,168,76,0.25);
+  background: rgba(201, 168, 76, 0.25);
   color: var(--gold-300);
 }
 
@@ -776,7 +854,7 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.3);
   z-index: 1000;
   transition: all var(--transition-base);
   animation: whatsapp-pulse 2s infinite;
@@ -784,7 +862,7 @@ textarea.form-control {
 
 .whatsapp-float:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 40px rgba(201,168,76,0.5);
+  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
   color: var(--dark-900);
 }
 
@@ -812,9 +890,235 @@ textarea.form-control {
 }
 
 @keyframes whatsapp-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(201,168,76, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(201,168,76, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(201,168,76, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(201, 168, 76, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
+  }
+}
+
+/* ============================================
+   SCROLL PROGRESS BAR
+============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, #C9A84C, #FFD700, #FFF8E1, #B8860B);
+  z-index: 100000;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 4px rgba(201, 168, 76, 0.8);
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ============================================
+   CURSOR TRAIL SPARKLE
+============================================ */
+.cursor-trail {
+  position: fixed;
+  border-radius: 50%;
+  background: var(--gold-400);
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  animation: trailFade 0.7s ease-out forwards;
+}
+
+@keyframes trailFade {
+  0% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+}
+
+/* ============================================
+   GOLD PARTICLES CANVAS
+============================================ */
+.gold-particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   AMBIENT GLOW ORBS
+============================================ */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  animation: orbFloat 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.glow-orb-gold {
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0%, transparent 70%);
+}
+
+.glow-orb-warm {
+  background: radial-gradient(circle, rgba(255, 160, 50, 0.10) 0%, transparent 70%);
+}
+
+@keyframes orbFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  40% {
+    transform: translateY(-40px) scale(1.06);
+  }
+
+  70% {
+    transform: translateY(18px) scale(0.96);
+  }
+}
+
+/* ============================================
+   SHIMMER TEXT (gold title animation)
+============================================ */
+.text-shimmer {
+  background: linear-gradient(90deg,
+      #C9A84C 0%, #FFD700 20%, #FFF8E1 38%,
+      #FFD700 55%, #B8860B 70%, #C9A84C 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 4s linear infinite;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 220% center;
+  }
+}
+
+/* ============================================
+   ANIMATED HERO WORD REVEAL
+============================================ */
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: wordReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes wordReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   STAT COUNTER POP
+============================================ */
+@keyframes statPop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stat-pop {
+  animation: statPop 0.35s ease;
+}
+
+/* ============================================
+   PULSING GOLD BORDER (CTA box)
+============================================ */
+@keyframes ctaGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.08), 0 8px 32px rgba(0, 0, 0, 0.5);
+    border-color: rgba(201, 168, 76, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 70px rgba(201, 168, 76, 0.28), 0 8px 48px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 215, 0, 0.55);
+  }
+}
+
+.cta-box {
+  animation: ctaGlow 3s ease-in-out infinite alternate;
+}
+
+/* ============================================
+   PERSPECTIVE TILT (product & feature cards)
+============================================ */
+.tilt-target {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ============================================
+   SECTION SECTION DIVIDER GLOW LINE
+============================================ */
+.glow-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.35), transparent);
+  position: relative;
+}
+
+.glow-line::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: var(--gold-gradient-h);
+  border-radius: 2px;
+  filter: blur(2px);
+  animation: glowLinePulse 3s ease-in-out infinite;
+}
+
+@keyframes glowLinePulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    width: 80px;
+  }
+
+  50% {
+    opacity: 1;
+    width: 160px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -824,5 +1128,8 @@ textarea.form-control {
     width: 50px;
     height: 50px;
   }
-  .whatsapp-tooltip { display: none; }
+
+  .whatsapp-tooltip {
+    display: none;
+  }
 }
