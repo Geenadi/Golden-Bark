@@ -415,19 +415,19 @@
   .grade-card-wide {
     grid-column: span 3;
   }
-  
+
   .grade-card-wide .grade-card-body {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 48px;
     align-items: center;
   }
-  
+
   .grade-card-wide .grade-card-specs-row {
     margin-top: 0;
     margin-bottom: 28px;
   }
-  
+
   .grade-card-wide .grade-card-desc {
     margin-bottom: 0;
     min-height: auto;
@@ -438,19 +438,19 @@
   .grade-card-wide {
     grid-column: span 2;
   }
-  
+
   .grade-card-wide .grade-card-body {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     gap: 32px;
     align-items: center;
   }
-  
+
   .grade-card-wide .grade-card-specs-row {
     margin-top: 0;
     margin-bottom: 20px;
   }
-  
+
   .grade-card-wide .grade-card-desc {
     margin-bottom: 0;
     min-height: auto;

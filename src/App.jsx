@@ -160,7 +160,17 @@ function Navbar() {
 
   useEffect(() => {
     setMobileOpen(false);
-    window.scrollTo(0, 0);
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   const links = [
@@ -193,7 +203,7 @@ function Navbar() {
                 {l.label}
               </NavLink>
             ))}
-            <Link to="/contact" className="btn btn-gold navbar-cta">Get a Quote</Link>
+            <Link to="/contact#enquiry-form" className="btn btn-gold navbar-cta">Get a Quote</Link>
           </div>
 
           <button className="navbar-hamburger" onClick={() => setMobileOpen(o => !o)} aria-label="Menu">
@@ -218,7 +228,7 @@ function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <Link to="/contact" className="btn btn-gold" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
+        <Link to="/contact#enquiry-form" className="btn btn-gold" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
       </div>
     </>
   );
@@ -240,13 +250,13 @@ function Footer() {
             </p>
             <div className="footer-social">
               <a href="https://www.facebook.com/share/1Dz9YGvnmU/?mibextid=wwXIfr" className="footer-social-link" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
               </a>
               <a href="#" className="footer-social-link" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
               </a>
               <a href="#" className="footer-social-link" aria-label="TikTok">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
               </a>
             </div>
           </div>
@@ -293,8 +303,9 @@ function Footer() {
               </div>
               <div className="footer-contact-item">
                 <Mail size={16} className="footer-contact-icon" />
-                <span className="footer-contact-text">goldenbarkexport@gmail.com</span>
+                <span className="footer-contact-text">info@goldenbarkcinnamon.com</span>
               </div>
+
             </div>
           </div>
         </div>

@@ -112,7 +112,7 @@ const grades = [
     tag: 'Mexican',
     stars: 3,
     desc: 'The M grade, or "Mexican" grade, is specifically categorised for its popularity in Latin American markets. These quills are generally thinner than H grades but possess a rougher texture and a more reddish-brown hue. Known for a pungent, sharp aroma and a distinct taste that complements the bold flavours found in Mexican beverages and desserts.',
-    color: '#A0522D',
+    color: '#8B6914',
     thickness: 'Thinner than H grades',
     origin: 'Sri Lanka',
     highlights: [
@@ -212,7 +212,7 @@ export default function Products() {
         <div className="container page-hero-content">
           <div className="section-tag" style={{ color: 'var(--gold-400)' }}>Our Products</div>
           <h1 className="page-hero-title">
-            Eight <span className="text-gold">Exceptional</span><br />Cinnamon Grades
+            Six <span className="text-gold">Exceptional</span><br />Cinnamon Grades
           </h1>
           <p className="page-hero-sub">
             From the ultra-premium Alba to our ready-to-use Cinnamon Powder, every grade
@@ -249,7 +249,7 @@ export default function Products() {
                   style={{ animationDelay: `${i * 0.08}s` }}
                   onClick={() => setActiveGrade(g)}
                 >
-                  <div className="grade-card-watermark">{g.name[0]}</div>
+                  <div className="grade-card-watermark">{g.name[0] + g.name[1]}</div>
                   <div className="grade-card-body">
                     <div className="grade-card-content-left">
                       <div className="grade-card-top-bar">
@@ -260,15 +260,15 @@ export default function Products() {
                           ))}
                         </div>
                       </div>
-                      
+
                       <div className="grade-card-title-section">
                         <h3 className="grade-card-name" style={{ color: g.color }}>{g.name}</h3>
                         <span className="grade-card-subtitle">{g.subtitle}</span>
                       </div>
-                      
+
                       <p className="grade-card-desc">{g.desc.slice(0, 130)}...</p>
                     </div>
-                    
+
                     <div className="grade-card-content-right">
                       <div className="grade-card-specs-row">
                         <div className="grade-card-spec">
@@ -280,7 +280,7 @@ export default function Products() {
                           <span className="spec-value">{g.origin}</span>
                         </div>
                       </div>
-                      
+
                       <div className="grade-card-action">
                         <span className="action-text">Explore</span>
                         <ArrowRight size={14} className="action-arrow" />
@@ -298,14 +298,14 @@ export default function Products() {
               <h3 className="category-title">Ceylon Cinnamon Powder</h3>
               <p className="category-subtitle">Ready-to-use premium fine powder ground from robust Hamburg-grade material.</p>
             </div>
-            
+
             {grades.filter(g => g.id === 'powder').map((g) => (
               <div
                 className="card grade-card grade-card-wide reveal"
                 key={g.id}
                 onClick={() => setActiveGrade(g)}
               >
-                <div className="grade-card-watermark">{g.name[0]+g.name[1]}</div>
+                <div className="grade-card-watermark">{g.name[0] + g.name[1]}</div>
                 <div className="grade-card-body">
                   <div className="grade-card-content-left">
                     <div className="grade-card-top-bar">
@@ -316,15 +316,15 @@ export default function Products() {
                         ))}
                       </div>
                     </div>
-                    
+
                     <div className="grade-card-title-section">
                       <h3 className="grade-card-name" style={{ color: g.color }}>{g.name}</h3>
                       <span className="grade-card-subtitle">{g.subtitle}</span>
                     </div>
-                    
+
                     <p className="grade-card-desc">{g.desc}</p>
                   </div>
-                  
+
                   <div className="grade-card-content-right">
                     <div className="grade-card-specs-row">
                       <div className="grade-card-spec">
@@ -336,7 +336,7 @@ export default function Products() {
                         <span className="spec-value">{g.origin}</span>
                       </div>
                     </div>
-                    
+
                     <div className="grade-card-action">
                       <span className="action-text">Explore</span>
                       <ArrowRight size={14} className="action-arrow" />

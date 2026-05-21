@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import './Contact.css';
+import backgroundHero from '../assets/contactback.jpg';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -15,18 +16,18 @@ function useScrollReveal() {
 const contactInfo = [
   {
     Icon: Phone,
-    title: 'Call Us',
+    title: 'Contact Us (Call/WhatsApp)',
     lines: ['+94 70 693 5553'],
   },
   {
     Icon: Mail,
     title: 'Email Us',
-    lines: ['goldenbarkexport@gmail.com'],
+    lines: ['info@goldenbarkcinnamon.com'],
   },
   {
     Icon: Clock,
     title: 'Business Hours',
-    lines: ['Monday - Sunday: 8:30AM - 5:30PM'],
+    lines: ['Monday - Friday : 8:30AM - 5:30PM', 'Saturday - Sunday : 8:30AM - 12:30PM'],
   },
 ];
 
@@ -55,7 +56,7 @@ export default function Contact() {
       <section className="page-hero">
         <div className="page-hero-bg">
           <img
-            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80&auto=format"
+            src={backgroundHero}
             alt="Contact Golden Bark"
             className="page-hero-img"
           />
@@ -97,16 +98,6 @@ export default function Contact() {
                     <div>
                       <div className="contact-info-title">{title}</div>
                       {lines.map(l => <div className="contact-info-line" key={l}>{l}</div>)}
-                      {title === 'Business Hours' && (
-                        <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
-                          <a href="#" style={{ color: 'var(--gold-500)' }} aria-label="Facebook" className="contact-social-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                          </a>
-                          <a href="#" style={{ color: 'var(--gold-500)' }} aria-label="Instagram" className="contact-social-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                          </a>
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))}
