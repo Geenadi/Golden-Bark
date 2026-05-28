@@ -1,7 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 import backgroundHero from '../assets/contactback.jpg';
+
+// ─── EmailJS credentials ─────────────────────────────────────────
+const EMAILJS_SERVICE_ID = 'service_4jlvr99';
+const EMAILJS_TEMPLATE_ID = 'template_q0tb0g5';
+const EMAILJS_PUBLIC_KEY = 'h4gqV93YhBRM-lwhK';
+
+// Initialize EmailJS with the public key
+emailjs.init({
+  publicKey: EMAILJS_PUBLIC_KEY,
+  blockHeadless: false,      // allow sending from dev / localhost
+  limitRate: {
+    throttle: 5000,           // 1 request per 5 seconds
+  },
+});
+// ──────────────────────────────────────────────────────────────────
 
 function useScrollReveal() {
   useEffect(() => {
@@ -38,16 +54,39 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError('');
+
+    try {
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name:     form.name,
+          company:  form.company,
+          email:    form.email,
+          phone:    form.phone,
+          grade:    form.grade,
+          quantity: form.quantity,
+          message:  form.message,
+        }
+      );
+      console.log('EmailJS success:', result.status, result.text);
+
       setSubmitted(true);
-    }, 1500);
+      setForm({ name: '', company: '', email: '', phone: '', grade: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Unable to send. Please email us directly at info@goldenbarkcinnamon.com');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -211,6 +250,12 @@ export default function Contact() {
                       required
                     />
                   </div>
+
+                  {error && (
+                    <p style={{ color: '#e53e3e', fontSize: '0.85rem', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <AlertCircle size={16} /> {error}
+                    </p>
+                  )}
 
                   <button type="submit" className="btn btn-gold" disabled={loading} style={{ width: '100%', justifyContent: 'center' }}>
                     {loading ? (
