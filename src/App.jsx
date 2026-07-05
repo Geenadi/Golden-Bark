@@ -185,7 +185,7 @@ function Navbar() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="navbar-inner">
           <Link to="/" className="navbar-logo">
-            <img src="/Logo-01.png" alt="Golden Bark Logo" onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src="/Logo-01.png" alt="Golden Bark Logo" width="200" height="200" onError={(e) => { e.target.style.display = 'none'; }} />
             <div className="navbar-logo-text">
               <span className="navbar-logo-name">Golden Bark</span>
               <span className="navbar-logo-sub">Exports Pvt Ltd</span>
@@ -244,19 +244,22 @@ function Footer() {
         <div className="footer-grid">
           {/* Brand */}
           <div>
-            <img src="/favicon.png" alt="Golden Bark" className="footer-brand-logo" onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src="/favicon.png" alt="Golden Bark" className="footer-brand-logo" width="120" height="120" onError={(e) => { e.target.style.display = 'none'; }} />
             <p className="footer-brand-desc">
               Golden Bark Exports Pvt Ltd is a premium Ceylon cinnamon exporter committed to delivering the finest quality spices from the heart of Sri Lanka to the world.
             </p>
             <div className="footer-social">
-              <a href="https://www.facebook.com/share/1Dz9YGvnmU/?mibextid=wwXIfr" className="footer-social-link" aria-label="Facebook">
+              <a href="https://www.facebook.com/GoldenBarkExports" className="footer-social-link" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
               </a>
-              <a href="#" className="footer-social-link" aria-label="Instagram">
+              <a href="https://www.instagram.com/goldenbarkexport" className="footer-social-link" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
               </a>
-              <a href="#" className="footer-social-link" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@goldenbarkexports" className="footer-social-link" aria-label="TikTok">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
+              </a>
+              <a href="https://www.youtube.com/@GoldenBarkExports" className="footer-social-link" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>
               </a>
             </div>
           </div>
