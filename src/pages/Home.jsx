@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout } from 'lucide-react';
 import './Home.css';
-import sticksImage from '../assets/Ceylon_Cinnamon_Sticks.jpg';
+import sticksImage from '../assets/package.jpg';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
 import cinnamonSticksImage from '../assets/cinnamon-2.jpg';
+import sticksImage2 from '../assets/package-2.jpg';
 
 
 
@@ -98,8 +99,8 @@ export default function Home() {
           <div className="intro-grid">
             <div className="intro-images reveal">
               <img
-                src={sticksImage}
-                alt="Ceylon Cinnamon Sticks"
+                src={sticksImage2}
+                alt="Golden Bark Package"
                 className="intro-img intro-img-main"
               />
               <img

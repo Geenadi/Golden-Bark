@@ -182,28 +182,43 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-inner">
-          <Link to="/" className="navbar-logo">
-            <img src="/Logo-01.png" alt="Golden Bark Logo" width="200" height="200" onError={(e) => { e.target.style.display = 'none'; }} />
-            <div className="navbar-logo-text">
-              <span className="navbar-logo-name">Golden Bark</span>
-              <span className="navbar-logo-sub">Exports Pvt Ltd</span>
-            </div>
-          </Link>
+      <nav className={`navbar-creative ${scrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-creative-inner">
+          {/* Logo segment with a curved notch background */}
+          <div className="nav-segment-logo">
+            <Link to="/" className="navbar-logo">
+              <img src="/favicon.png" alt="Golden Bark Logo" width="160" height="160" onError={(e) => { e.target.style.display = 'none'; }} />
+              <div className="navbar-logo-text">
+                <span className="navbar-logo-name">Golden Bark</span>
+                <span className="navbar-logo-sub">Exports</span>
+              </div>
+            </Link>
+          </div>
 
-          <div className="navbar-nav">
-            {links.map(l => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === '/'}
-                className={({ isActive }) => `navbar-link${isActive ? ' active' : ''}`}
-              >
-                {l.label}
-              </NavLink>
-            ))}
-            <Link to="/contact#enquiry-form" className="btn btn-gold navbar-cta">Get a Quote</Link>
+          {/* Navigation segment - floating dark glass pill */}
+          <div className="nav-segment-menu">
+            <div className="nav-pill">
+              {links.map(l => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  end={l.to === '/'}
+                  className={({ isActive }) => `nav-pill-link${isActive ? ' active' : ''}`}
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+
+          {/* Action segment with curved notch background */}
+          <div className="nav-segment-action">
+            <Link to="/contact#enquiry-form" className="nav-cta-button">
+              <span>Get a Quote</span>
+              <div className="cta-icon-wrapper">
+                <ChevronRight size={14} />
+              </div>
+            </Link>
           </div>
 
           <button className="navbar-hamburger" onClick={() => setMobileOpen(o => !o)} aria-label="Menu">
@@ -228,7 +243,9 @@ function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <Link to="/contact#enquiry-form" className="btn btn-gold" onClick={() => setMobileOpen(false)}>Get a Quote</Link>
+        <a href="tel:+94706935553" className="mobile-contact-link" onClick={() => setMobileOpen(false)}>
+          <Phone size={16} /> +94 70 693 5553
+        </a>
       </div>
     </>
   );
@@ -239,84 +256,100 @@ function Navbar() {
 ========================================= */
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          {/* Brand */}
-          <div>
-            <img src="/favicon.png" alt="Golden Bark" className="footer-brand-logo" width="120" height="120" onError={(e) => { e.target.style.display = 'none'; }} />
+    <footer className="footer-creative">
+      {/* Curved Divider Line */}
+      <div className="footer-curve-wrapper">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="footer-curve-svg">
+          <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="var(--dark-950)" />
+          <path d="M0,40 C360,90 1080,-10 1440,40" stroke="var(--border-gold)" strokeWidth="1.5" />
+        </svg>
+      </div>
+
+      <div className="container footer-creative-content">
+        <div className="footer-grid-creative">
+          {/* Brand Card */}
+          <div className="footer-deck brand-deck">
+            <div className="footer-logo-brand">
+              <img src="/favicon.png" alt="Golden Bark Logo" className="footer-logo-img" width="120" height="120" onError={(e) => { e.target.style.display = 'none'; }} />
+              <div className="footer-logo-text">
+                <span className="footer-logo-name">Golden Bark</span>
+                <span className="footer-logo-sub">Exports Pvt Ltd</span>
+              </div>
+            </div>
             <p className="footer-brand-desc">
               Golden Bark Exports Pvt Ltd is a premium Ceylon cinnamon exporter committed to delivering the finest quality spices from the heart of Sri Lanka to the world.
             </p>
-            <div className="footer-social">
-              <a href="https://www.facebook.com/GoldenBarkExports" className="footer-social-link" aria-label="Facebook">
+            <div className="footer-social-creative">
+              <a href="https://www.facebook.com/GoldenBarkExports" className="footer-social-pill" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
               </a>
-              <a href="https://www.instagram.com/goldenbarkexport" className="footer-social-link" aria-label="Instagram">
+              <a href="https://www.instagram.com/goldenbarkexport" className="footer-social-pill" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
               </a>
-              <a href="https://www.tiktok.com/@goldenbarkexports" className="footer-social-link" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@goldenbarkexports" className="footer-social-pill" aria-label="TikTok">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
               </a>
-              <a href="https://www.youtube.com/@GoldenBarkExports" className="footer-social-link" aria-label="YouTube">
+              <a href="https://www.youtube.com/@GoldenBarkExports" className="footer-social-pill" aria-label="YouTube">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="footer-col-title">Quick Links</h4>
-            <ul className="footer-links">
+          {/* Quick Links Card */}
+          <div className="footer-deck">
+            <h4 className="footer-col-title-creative">Quick Links</h4>
+            <ul className="footer-links-creative">
               {[['/', 'Home'], ['/about', 'About Us'], ['/products', 'Our Products'], ['/contact', 'Contact Us']].map(([to, label]) => (
                 <li key={to}>
-                  <Link to={to} className="footer-link">
-                    <ChevronRight size={12} /> {label}
+                  <Link to={to} className="footer-link-creative">
+                    <ChevronRight size={12} className="footer-link-icon" /> {label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Products */}
-          <div>
-            <h4 className="footer-col-title">Our Products</h4>
-            <ul className="footer-links">
+          {/* Products Card */}
+          <div className="footer-deck">
+            <h4 className="footer-col-title-creative">Our Products</h4>
+            <ul className="footer-links-creative">
               {['Alba', 'C4/C5', 'H1/H2', 'M', 'Powder'].map(p => (
                 <li key={p}>
-                  <Link to="/products" className="footer-link">
-                    <ChevronRight size={12} /> {p}
+                  <Link to="/products" className="footer-link-creative">
+                    <ChevronRight size={12} className="footer-link-icon" /> {p} Spice
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="footer-col-title">Contact Us</h4>
-            <div>
-              <div className="footer-contact-item">
-                <MapPin size={16} className="footer-contact-icon" />
-                <span className="footer-contact-text">125/A, Thalgasgoda,<br />Ambalangoda, Sri Lanka</span>
+          {/* Contact Card */}
+          <div className="footer-deck contact-deck">
+            <h4 className="footer-col-title-creative">Contact Us</h4>
+            <div className="footer-contact-list-creative">
+              <div className="footer-contact-item-creative">
+                <div className="contact-icon-pill"><MapPin size={14} /></div>
+                <span className="footer-contact-text-creative">125/A, Thalgasgoda,<br />Ambalangoda, Sri Lanka</span>
               </div>
-              <div className="footer-contact-item">
-                <Phone size={16} className="footer-contact-icon" />
-                <span className="footer-contact-text">+94 70 693 5553</span>
+              <div className="footer-contact-item-creative">
+                <div className="contact-icon-pill"><Phone size={14} /></div>
+                <span className="footer-contact-text-creative">+94 70 693 5553</span>
               </div>
-              <div className="footer-contact-item">
-                <Mail size={16} className="footer-contact-icon" />
-                <span className="footer-contact-text">info@goldenbarkcinnamon.com</span>
+              <div className="footer-contact-item-creative">
+                <div className="contact-icon-pill"><Mail size={14} /></div>
+                <span className="footer-contact-text-creative">info@goldenbarkcinnamon.com</span>
               </div>
-
             </div>
           </div>
         </div>
 
-        <div className="footer-bottom">
-          <p className="footer-copy">
+        <div className="footer-bottom-creative">
+          <p className="footer-copy-creative">
             © {new Date().getFullYear()} Golden Bark Exports Pvt Ltd. All rights reserved.
           </p>
+          <div className="footer-certifications">
+            <span className="cert-tag">Pure Ceylon Cinnamon</span>
+          </div>
         </div>
       </div>
     </footer>

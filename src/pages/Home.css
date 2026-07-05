@@ -177,6 +177,49 @@
   height: 540px;
 }
 
+/* Stacked vertical layout */
+.intro-images-stack {
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intro-img-stack {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  display: block;
+  box-shadow: var(--shadow-card);
+}
+
+.intro-img-stack-top {
+  height: 260px;
+  object-position: center;
+}
+
+.intro-img-stack-bottom {
+  height: 320px;
+  object-position: center;
+  border: 3px solid var(--dark-900);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Badge for stacked layout */
+.intro-badge-stack {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-gold);
+}
+
 .intro-img {
   border-radius: var(--radius-lg);
   object-fit: cover;
@@ -195,7 +238,7 @@
 .intro-img-accent {
   width: 55%;
   height: 55%;
-  bottom: 0;
+  bottom: -40px;
   right: 0;
   z-index: 2;
   border: 3px solid var(--dark-900);

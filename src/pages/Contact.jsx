@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import './Contact.css';
@@ -29,6 +30,20 @@ function useScrollReveal() {
   }, []);
 }
 
+function useScrollToHash() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      }
+    }
+  }, [hash]);
+}
+
 const contactInfo = [
   {
     Icon: Phone,
@@ -49,6 +64,7 @@ const contactInfo = [
 
 export default function Contact() {
   useScrollReveal();
+  useScrollToHash();
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '', grade: '', quantity: '', message: ''
   });
@@ -144,7 +160,7 @@ export default function Contact() {
             </div>
 
             {/* Form */}
-            <div className="reveal" style={{ animationDelay: '0.2s' }}>
+            <div id="enquiry-form" className="reveal" style={{ animationDelay: '0.2s' }}>
               {submitted ? (
                 <div className="success-box glass">
                   <CheckCircle size={48} color="var(--gold-500)" style={{ margin: '0 auto 20px' }} />

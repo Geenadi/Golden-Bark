@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Package, Star, CheckCircle, X } from 'lucide-react';
 import './Products.css';
 import backgroundHero from '../assets/pro-background.jpg';
+import albaImg from '../assets/alba.jpg';
+import c5Img from '../assets/c5.jpg';
+import c4Img from '../assets/c4.jpg';
+import h1Img from '../assets/h1.jpg';
+import h2Img from '../assets/h2.jpg';
+import mImg from '../assets/m.jpg';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -21,9 +27,10 @@ const grades = [
     subtitle: 'Ultra-thin Luxury',
     tag: 'Rarest Grade',
     stars: 5,
+    image: albaImg,
     desc: 'The highest quality and most expensive tier of Ceylon cinnamon. These quills are exceptionally thin, ranging from 6 to 10 mm in diameter, characterised by their light golden-brown colour, very smooth surface, and a delicate, highly refined sweetness. Because of their fragile nature and the skill required to roll them, they are considered a premium product globally.',
     color: '#FFD700',
-    thickness: '60-10 mm diameter',
+    thickness: '6-10 mm diameter',
     origin: 'Sri Lanka',
     highlights: [
       'Exceptionally thin, 6-10 mm diameter quills',
@@ -39,6 +46,7 @@ const grades = [
     subtitle: 'Continental Grade',
     tag: 'Continental',
     stars: 4,
+    image: c5Img,
     desc: 'A premium Continental grade offering excellent quality and consistency. C5 quills deliver the authentic sweetness and aroma of true Ceylon cinnamon, making them ideal for large-scale food production, branded retail, and export to international markets.',
     color: '#C9A84C',
     thickness: '10-12 mm diameter',
@@ -57,6 +65,7 @@ const grades = [
     subtitle: 'Continental Grade — Popular Export',
     tag: 'Continental',
     stars: 4,
+    image: c4Img,
     desc: 'A popular Continental choice that offers excellent quality at a more accessible price point than Alba or C5. The quills usually have a diameter of 13 to 15 mm. While thicker, they still possess a sweet fragrance and a relatively smooth bark, making them ideal for high-end retail packaging and culinary use.',
     color: '#A0742A',
     thickness: '13-15 mm diameter',
@@ -75,6 +84,7 @@ const grades = [
     subtitle: 'Hamburg Grade — Top Tier',
     tag: 'Hamburg',
     stars: 3,
+    image: h1Img,
     desc: 'The top tier of the Hamburg category. H1 consists of quills that are significantly thicker and sturdier, often reaching up to 23 mm in diameter. The bark is darker and more brittle compared to C grades. H1 is prized for its robust, spicy flavour profile and is frequently used in traditional cooking and by manufacturers requiring a stronger cinnamon punch.',
     color: '#B8860B',
     thickness: 'Up to 23 mm diameter',
@@ -93,6 +103,7 @@ const grades = [
     subtitle: 'Hamburg Grade — Economical',
     tag: 'Hamburg',
     stars: 3,
+    image: h2Img,
     desc: 'A more economical Hamburg grade featuring quills that are thicker and more fibrous than H1. These quills may have a rougher surface and often consist of more broken pieces or "fillings." While it lacks the delicate appearance of premium grades, H2 still provides a strong, authentic flavour, making it a staple for grinding into high-quality cinnamon powder.',
     color: '#8B6914',
     thickness: 'Thick & fibrous',
@@ -111,6 +122,7 @@ const grades = [
     subtitle: 'Mexican Grade',
     tag: 'Mexican',
     stars: 3,
+    image: mImg,
     desc: 'The M grade, or "Mexican" grade, is specifically categorised for its popularity in Latin American markets. These quills are generally thinner than H grades but possess a rougher texture and a more reddish-brown hue. Known for a pungent, sharp aroma and a distinct taste that complements the bold flavours found in Mexican beverages and desserts.',
     color: '#8B6914',
     thickness: 'Thinner than H grades',
@@ -129,6 +141,7 @@ const grades = [
     subtitle: 'Premium Grade Powder',
     tag: 'Ready to Use',
     stars: 4,
+    image: null,
     desc: 'Our finely ground Ceylon cinnamon powder is made from premium H1 and H2 Hamburg-grade material. It delivers an instant, robust aromatic flavour profile ideal for bakeries, confectioneries, specialty food brands, and retail spice jars.',
     color: '#C9A84C',
     thickness: 'Fine Powder',
@@ -151,7 +164,13 @@ function GradeModal({ grade, onClose }) {
         <button className="modal-close" onClick={onClose}>
           <X size={20} />
         </button>
-        <div className="modal-content" style={{ padding: '48px 40px' }}>
+        {grade.image && (
+          <div className="modal-image-wrapper">
+            <img src={grade.image} alt={grade.name} className="modal-image" />
+            <div className="modal-image-overlay" />
+          </div>
+        )}
+        <div className="modal-content" style={{ padding: grade.image ? '32px 40px 48px' : '48px 40px' }}>
           <span className="badge">{grade.tag}</span>
           <h2 className="modal-title">
             {grade.name} Grade
@@ -250,6 +269,16 @@ export default function Products() {
                   onClick={() => setActiveGrade(g)}
                 >
                   <div className="grade-card-watermark">{g.name[0] + g.name[1]}</div>
+
+                  {/* Card Image */}
+                  {g.image && (
+                    <div className="grade-card-image-wrapper">
+                      <img src={g.image} alt={g.name} className="grade-card-image" />
+                      <div className="grade-card-image-overlay" />
+                      <span className="grade-card-image-tag">{g.tag}</span>
+                    </div>
+                  )}
+
                   <div className="grade-card-body">
                     <div className="grade-card-content-left">
                       <div className="grade-card-top-bar">
@@ -266,7 +295,7 @@ export default function Products() {
                         <span className="grade-card-subtitle">{g.subtitle}</span>
                       </div>
 
-                      <p className="grade-card-desc">{g.desc.slice(0, 130)}...</p>
+                      <p className="grade-card-desc">{g.desc.slice(0, 120)}...</p>
                     </div>
 
                     <div className="grade-card-content-right">

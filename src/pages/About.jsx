@@ -4,7 +4,7 @@ import { ArrowRight, Target, Eye, Heart, Users, Sprout, Award } from 'lucide-rea
 import './About.css';
 import backgroundHero from '../assets/backgrd.jpg';
 import peelersImage from '../assets/cinnamon_peelers.png';
-import albaImage from '../assets/alba.jpg';
+import cinnamonWithLeavesImage from '../assets/cinnamon-with-leaves.jpg';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function About() {
                 className="about-img-main"
               />
               <img
-                src={albaImage}
+                src={cinnamonWithLeavesImage}
                 alt="Ceylon Cinnamon Sticks"
                 className="about-img-accent"
               />
