@@ -8,7 +8,8 @@
   height: 100vh;
   min-height: 700px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   overflow: hidden;
 }
 
@@ -46,6 +47,10 @@
   transform: translateY(24px);
   transition: opacity 0.9s ease, transform 0.9s ease;
   max-width: 680px;
+  padding-top: 120px;
+  margin-top: auto;
+  margin-bottom: auto;
+  align-self: center;
 }
 
 .hero-content--visible {
@@ -95,6 +100,20 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Mobile buttons inside hero — hidden on desktop */
+.hero-actions-mobile {
+  display: none;
+}
+
+.hero-cta-strip {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 48px 24px;
+  background: var(--dark-95);
 }
 
 .hero-scroll-hint {
@@ -596,6 +615,8 @@
 }
 
 /* ---- Responsive ---- */
+
+/* ── Tablet (≤1024px) ── */
 @media (max-width: 1024px) {
   .intro-grid {
     grid-template-columns: 1fr;
@@ -608,6 +629,7 @@
 
   .why-grid {
     grid-template-columns: 1fr;
+    gap: 48px;
   }
 
   .why-image-wrap {
@@ -616,30 +638,190 @@
   }
 }
 
+/* ── Mobile (≤768px) ── */
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* Hero */
+  .hero {
+    min-height: 100svh;
+    height: auto;
+    padding-bottom: 100px; /* room for scroll hint */
   }
 
-  .preview-grid {
-    grid-template-columns: 1fr;
+  .hero-content {
+    padding-top: 100px;
+    padding-bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  .cta-box {
-    padding: 48px 24px;
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .hero-eyebrow-line {
+    width: 24px;
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+    margin-bottom: 18px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  .hero-scroll-hint {
+    bottom: 24px;
+  }
+
+  /* Mobile buttons inside hero */
+  .hero-actions-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .hero-actions-mobile .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 16px 24px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  /* Hide external CTA strip on mobile */
+  .hero-cta-strip {
+    display: none;
+  }
+
+  /* Stats */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border-dark);
+    padding: 20px 12px;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+
+  /* Intro */
+  .intro-images {
+    height: 260px;
+  }
+
+  .intro-img-accent {
+    bottom: -20px;
+  }
+
+  .intro-badge {
+    top: 16px;
+    right: -8px;
+    padding: 10px 14px;
+  }
+
+  .intro-feature {
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  /* Products preview cards */
+  .preview-card {
+    width: 300px;
+    padding: 28px 24px;
+  }
+
+  /* Why section */
+  .why-image-wrap {
+    height: 280px;
+  }
+
+  .why-globe {
+    left: -10px;
+    bottom: 16px;
+    padding: 12px 16px;
+  }
+
+  /* CTA box */
+  .cta-box {
+    padding: 40px 20px;
+  }
+
+  /* Section base padding */
+  .section {
+    padding: 64px 0;
   }
 }
 
+/* ── Small Mobile (≤480px) ── */
 @media (max-width: 480px) {
+  .hero-content {
+    padding-top: 90px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* Stats */
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .stat-item {
     border-right: none;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+  }
+
+  /* Intro stacked images */
+  .intro-images {
+    height: 220px;
+  }
+
+  .intro-features {
+    gap: 12px;
+  }
+
+  /* Products */
+  .preview-card {
+    width: 260px;
+    padding: 22px 18px;
+  }
+
+  .preview-grade {
+    font-size: 2rem;
+  }
+
+  /* Certifications */
+  .cert-inner {
+    gap: 16px;
+  }
+
+  .cert-item {
+    font-size: 10px;
+    padding: 5px 12px;
   }
 }

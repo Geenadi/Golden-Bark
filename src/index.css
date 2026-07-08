@@ -1058,10 +1058,20 @@ textarea.form-control {
   animation: whatsapp-pulse 2s infinite;
 }
 
+.whatsapp-float svg {
+  /* Offset the asymmetric tail of the chat bubble visually */
+  transform: translate(1px, -0.5px);
+  transition: transform var(--transition-base);
+}
+
 .whatsapp-float:hover {
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
   color: var(--dark-900);
+}
+
+.whatsapp-float:hover svg {
+  transform: translate(1px, -0.5px) scale(1.05);
 }
 
 .whatsapp-tooltip {
@@ -1079,6 +1089,30 @@ textarea.form-control {
   visibility: hidden;
   transition: all var(--transition-fast);
   border: 1px solid var(--border-gold);
+}
+
+/* Tooltip Arrow pointing to the float bubble */
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--dark-800);
+}
+
+.whatsapp-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--border-gold);
+  z-index: -1;
 }
 
 .whatsapp-float:hover .whatsapp-tooltip {

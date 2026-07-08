@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout } from 'lucide-react';
 import './Home.css';
-import sticksImage from '../assets/package.jpg';
+import sticksImage from '../assets/package.webp';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
 import cinnamonSticksImage from '../assets/cinnamon-2.jpg';
 import sticksImage2 from '../assets/package-2.jpg';
@@ -39,6 +39,8 @@ export default function Home() {
   const [heroLoaded, setHeroLoaded] = useState(false);
 
   useEffect(() => {
+    // Scroll to top on page load
+    window.scrollTo({ top: 0, behavior: 'instant' });
     const t = setTimeout(() => setHeroLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
@@ -75,7 +77,8 @@ export default function Home() {
             true Ceylon cinnamon - pure, organic and ethically sourced since 2025.
           </p>
 
-          <div className="hero-actions">
+          {/* Mobile-only buttons — hidden on desktop */}
+          <div className="hero-actions-mobile">
             <Link to="/products" className="btn btn-gold">
               Explore Products <ArrowRight size={16} />
             </Link>
@@ -85,16 +88,24 @@ export default function Home() {
           </div>
         </div>
 
-        <a href="#intro" className="hero-scroll-hint">
+        <a href="#hero-cta" className="hero-scroll-hint">
           <ChevronDown size={20} />
           <span>Scroll</span>
         </a>
       </section>
 
-
+      {/* ====== HERO CTA BUTTONS (below the fold) ====== */}
+      <div className="hero-cta-strip" id="hero-cta">
+        <Link to="/products" className="btn btn-gold">
+          Explore Products <ArrowRight size={16} />
+        </Link>
+        <Link to="/contact" className="btn btn-outline">
+          Request a Sample
+        </Link>
+      </div>
 
       {/* ====== INTRO ====== */}
-      <section className="section" id="intro">
+      <section className="section" id="intro-content">
         <div className="container">
           <div className="intro-grid">
             <div className="intro-images reveal">

@@ -385,6 +385,16 @@ function Layout({ children }) {
    APP
 ========================================= */
 export default function App() {
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    const handleLoad = () => window.scrollTo(0, 0);
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
+  }, []);
+
   return (
     <Router>
       <GoldParticles />
