@@ -243,9 +243,14 @@ function Navbar() {
             {l.label}
           </NavLink>
         ))}
-        <a href="tel:+94706935553" className="mobile-contact-link" onClick={() => setMobileOpen(false)}>
-          <Phone size={16} /> +94 70 693 5553
-        </a>
+        <Link
+          to="/contact#enquiry-form"
+          className="mobile-cta-button"
+          onClick={() => setMobileOpen(false)}
+        >
+          <span>Get a Quote</span>
+          <ChevronRight size={16} />
+        </Link>
       </div>
     </>
   );
@@ -316,7 +321,7 @@ function Footer() {
               {['Alba', 'C4/C5', 'H1/H2', 'M', 'Powder'].map(p => (
                 <li key={p}>
                   <Link to="/products" className="footer-link-creative">
-                    <ChevronRight size={12} className="footer-link-icon" /> {p} Spice
+                    <ChevronRight size={12} className="footer-link-icon" /> {p} Grade
                   </Link>
                 </li>
               ))}

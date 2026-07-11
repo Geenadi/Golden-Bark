@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout } from 'lucide-react';
+import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout, Pause, Play } from 'lucide-react';
 import './Home.css';
 import sticksImage from '../assets/package.webp';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
 import cinnamonSticksImage from '../assets/cinnamon-2.jpg';
 import sticksImage2 from '../assets/package-2.jpg';
+import processVideo from '../assets/web-video.mp4';
 
 
 
@@ -37,6 +38,21 @@ const products = [
 export default function Home() {
   useScrollReveal();
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [isVideoPaused, setIsVideoPaused] = useState(false);
+  const videoRef = useRef(null);
+
+  const toggleVideoPlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+      setIsVideoPaused(false);
+    } else {
+      video.pause();
+      setIsVideoPaused(true);
+    }
+  };
 
   useEffect(() => {
     // Scroll to top on page load
@@ -44,6 +60,24 @@ export default function Home() {
     const t = setTimeout(() => setHeroLoaded(true), 100);
     return () => clearTimeout(t);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && !video.paused) {
+          video.pause();
+          setIsVideoPaused(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [videoRef]);
 
   return (
     <div className="home">
@@ -77,8 +111,7 @@ export default function Home() {
             true Ceylon cinnamon - pure, organic and ethically sourced since 2025.
           </p>
 
-          {/* Mobile-only buttons — hidden on desktop */}
-          <div className="hero-actions-mobile">
+          <div className="hero-actions">
             <Link to="/products" className="btn btn-gold">
               Explore Products <ArrowRight size={16} />
             </Link>
@@ -87,25 +120,10 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
-        <a href="#hero-cta" className="hero-scroll-hint">
-          <ChevronDown size={20} />
-          <span>Scroll</span>
-        </a>
       </section>
 
-      {/* ====== HERO CTA BUTTONS (below the fold) ====== */}
-      <div className="hero-cta-strip" id="hero-cta">
-        <Link to="/products" className="btn btn-gold">
-          Explore Products <ArrowRight size={16} />
-        </Link>
-        <Link to="/contact" className="btn btn-outline">
-          Request a Sample
-        </Link>
-      </div>
-
       {/* ====== INTRO ====== */}
-      <section className="section" id="intro-content">
+      <section className="section intro-section" id="intro-content">
         <div className="container">
           <div className="intro-grid">
             <div className="intro-images reveal">
@@ -165,6 +183,49 @@ export default function Home() {
                 Our Story <ArrowRight size={16} />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== PROCESS VIDEO ====== */}
+      <section className="section process-video-section">
+        <div className="container">
+          <div className="process-video-header reveal">
+            <div className="section-tag">Behind the Process</div>
+            <h2 className="section-title">
+              From <span className="text-gold">Estate </span> 
+              to <span className="text-gold">Packaging</span>
+            </h2>
+            <div className="gold-divider" style={{ margin: '20px auto' }} />
+            <p className="section-subtitle" style={{ margin: '10px auto', fontSize: '1.125rem' }}>
+              The journey of cinnamon from harvesting and peeling to careful grading and packing.
+            </p>
+          </div>
+
+          <div className="process-video-card reveal" style={{ transitionDelay: '0.2s' }}>
+            <video
+              ref={videoRef}
+              className="process-video"
+              src={processVideo}
+              controls
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              onPause={() => setIsVideoPaused(true)}
+              onPlay={() => setIsVideoPaused(false)}
+            />
+            {isVideoPaused && (
+              <button
+                type="button"
+                className="process-video-pause-btn"
+                onClick={toggleVideoPlayback}
+                aria-label="Resume video"
+              >
+                <Play size={24} />
+              </button>
+            )}
           </div>
         </div>
       </section>

@@ -208,6 +208,22 @@ ul {
   gap: 12px;
 }
 
+.intro-text .section-tag {
+  margin-bottom: 10px;
+}
+
+.intro-text .section-title {
+  margin-bottom: 18px;
+}
+
+.intro-text .section-tag {
+  margin-bottom: 10px;
+}
+
+.intro-text .section-title {
+  margin-bottom: 18px;
+}
+
 .section-tag::before,
 .section-tag::after {
   content: '';
@@ -728,6 +744,30 @@ textarea.form-control {
 .mobile-menu .navbar-link {
   font-size: 20px;
   letter-spacing: 4px;
+}
+
+.mobile-cta-button {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--gold-gradient);
+  color: var(--dark-950);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 16px 36px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  transition: all var(--transition-base);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-cta-button:active {
+  transform: scale(0.96);
 }
 
 .mobile-contact-link {
