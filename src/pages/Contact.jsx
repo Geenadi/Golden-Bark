@@ -238,6 +238,7 @@ export default function Contact() {
                         <option value="h2">H2 (Industrial / Powder)</option>
                         <option value="c4">C4 (Export Quality)</option>
                         <option value="c5">C5 (Export Quality)</option>
+                        <option value="m">M (Export Quality)</option>
                         <option value="powder">Cinnamon Powder (Ready to Use)</option>
                         <option value="multiple">Multiple Grades</option>
                       </select>

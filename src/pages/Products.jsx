@@ -390,36 +390,83 @@ export default function Products() {
           </div>
 
           <div className="compare-table-wrap reveal">
-            <table className="compare-table">
-              <thead>
-                <tr>
-                  <th>Grade</th>
-                  <th>Quality Tier</th>
-                  <th>Bark Thickness</th>
-                  <th>Best For</th>
-                  <th>Availability</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['Alba', 'Ultra-thin Luxury', '6-10 mm diameter', 'Luxury retail, fine dining', 'Limited'],
-                  ['C5', 'Continental', '10-12 mm diameter', 'Large-scale food production', 'High Volume'],
-                  ['C4', 'Continental — Popular', '13-15 mm diameter', 'High-end retail, culinary use', 'High Volume'],
-                  ['H1', 'Hamburg — Top Tier', 'Up to 23 mm diameter', 'Traditional cooking, manufacturers', 'Regular'],
-                  ['H2', 'Hamburg — Economical', 'Thick & fibrous', 'Grinding, cinnamon powder', 'Regular'],
-                  ['M', 'Mexican', 'Thinner than H grades', 'Latin American beverages & desserts', 'Regular'],
-                  ['Powder', 'Ready to Use', 'Fine Powder', 'Bakeries, confectioneries, retail', 'Regular'],
-                ].map(([grade, tier, thick, best, avail]) => (
-                  <tr key={grade}>
-                    <td><strong style={{ color: 'var(--gold-500)', fontFamily: 'var(--font-display)' }}>{grade}</strong></td>
-                    <td><span className="badge" style={{ fontSize: '10px' }}>{tier}</span></td>
-                    <td style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{thick}</td>
-                    <td style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{best}</td>
-                    <td><span className="avail-dot" />{avail}</td>
+            <div className="compare-table-desktop">
+              <table className="compare-table">
+                <thead>
+                  <tr>
+                    <th>Grade</th>
+                    <th>Quality Tier</th>
+                    <th>Bark Thickness</th>
+                    <th>Best For</th>
+                    <th>Availability</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {[
+                    ['Alba', 'Ultra-thin Luxury', '6-10 mm diameter', 'Luxury retail, fine dining', 'Limited'],
+                    ['C5', 'Continental', '10-12 mm diameter', 'Large-scale food production', 'High Volume'],
+                    ['C4', 'Continental — Popular', '13-15 mm diameter', 'High-end retail, culinary use', 'High Volume'],
+                    ['H1', 'Hamburg — Top Tier', 'Up to 23 mm diameter', 'Traditional cooking, manufacturers', 'Regular'],
+                    ['H2', 'Hamburg — Economical', 'Thick & fibrous', 'Grinding, cinnamon powder', 'Regular'],
+                    ['M', 'Mexican', 'Thinner than H grades', 'Latin American beverages & desserts', 'Regular'],
+                    ['Powder', 'Ready to Use', 'Fine Powder', 'Bakeries, confectioneries, retail', 'Regular'],
+                  ].map(([grade, tier, thick, best, avail]) => (
+                    <tr key={grade}>
+                      <td><strong className="compare-grade">{grade}</strong></td>
+                      <td><span className="badge" style={{ fontSize: '10px' }}>{tier}</span></td>
+                      <td style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{thick}</td>
+                      <td style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{best}</td>
+                      <td><span className="compare-pill"><span className="avail-dot" />{avail}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="compare-table-mobile">
+              <div className="compare-table__header">
+                <span>Grade</span>
+                <span>Quality Tier</span>
+                <span>Bark Thickness</span>
+                <span>Best For</span>
+                <span>Availability</span>
+              </div>
+              {[
+                ['Alba', 'Ultra-thin Luxury', '6-10 mm diameter', 'Luxury retail, fine dining', 'Limited'],
+                ['C5', 'Continental', '10-12 mm diameter', 'Large-scale food production', 'High Volume'],
+                ['C4', 'Continental — Popular', '13-15 mm diameter', 'High-end retail, culinary use', 'High Volume'],
+                ['H1', 'Hamburg — Top Tier', 'Up to 23 mm diameter', 'Traditional cooking, manufacturers', 'Regular'],
+                ['H2', 'Hamburg — Economical', 'Thick & fibrous', 'Grinding, cinnamon powder', 'Regular'],
+                ['M', 'Mexican', 'Thinner than H grades', 'Latin American beverages & desserts', 'Regular'],
+                ['Powder', 'Ready to Use', 'Fine Powder', 'Bakeries, confectioneries, retail', 'Regular'],
+              ].map(([grade, tier, thick, best, avail]) => (
+                <div className="compare-table__row" key={grade}>
+                  <div className="compare-table__cell compare-table__cell--primary">
+                    <span className="compare-table__label">Grade</span>
+                    <div className="compare-table__value-stack">
+                      <strong className="compare-grade">{grade}</strong>
+                      <span className="compare-table__eyebrow">Signature grade</span>
+                    </div>
+                  </div>
+                  <div className="compare-table__cell">
+                    <span className="compare-table__label">Quality Tier</span>
+                    <span className="badge" style={{ fontSize: '10px' }}>{tier}</span>
+                  </div>
+                  <div className="compare-table__cell">
+                    <span className="compare-table__label">Bark Thickness</span>
+                    <span>{thick}</span>
+                  </div>
+                  <div className="compare-table__cell">
+                    <span className="compare-table__label">Best For</span>
+                    <span>{best}</span>
+                  </div>
+                  <div className="compare-table__cell compare-table__cell--highlight">
+                    <span className="compare-table__label">Availability</span>
+                    <span className="compare-pill"><span className="avail-dot" />{avail}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
