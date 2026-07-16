@@ -1176,22 +1176,6 @@ textarea.form-control {
 }
 
 /* ============================================
-   SCROLL PROGRESS BAR
-============================================ */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, #C9A84C, #FFD700, #FFF8E1, #B8860B);
-  z-index: 100000;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 4px rgba(201, 168, 76, 0.8);
-  transition: width 0.08s linear;
-  pointer-events: none;
-}
-
-/* ============================================
    CURSOR TRAIL SPARKLE
 ============================================ */
 .cursor-trail {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout, Pause, Play } from 'lucide-react';
+import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout } from 'lucide-react';
 import './Home.css';
 import sticksImage from '../assets/package.webp';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
@@ -38,21 +38,7 @@ const products = [
 export default function Home() {
   useScrollReveal();
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const [isVideoPaused, setIsVideoPaused] = useState(false);
   const videoRef = useRef(null);
-
-  const toggleVideoPlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      video.play();
-      setIsVideoPaused(false);
-    } else {
-      video.pause();
-      setIsVideoPaused(true);
-    }
-  };
 
   useEffect(() => {
     // Scroll to top on page load
@@ -67,17 +53,18 @@ export default function Home() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting && !video.paused) {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
           video.pause();
-          setIsVideoPaused(true);
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.15 }
     );
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, [videoRef]);
+  }, []);
 
   return (
     <div className="home">
@@ -207,25 +194,15 @@ export default function Home() {
               ref={videoRef}
               className="process-video"
               src={processVideo}
-              controls
               autoPlay
               muted
               loop
               playsInline
-              preload="metadata"
-              onPause={() => setIsVideoPaused(true)}
-              onPlay={() => setIsVideoPaused(false)}
+              preload="auto"
+              disablePictureInPicture
+              controlsList="nodownload nofullscreen noremoteplayback"
+              onContextMenu={(e) => e.preventDefault()}
             />
-            {isVideoPaused && (
-              <button
-                type="button"
-                className="process-video-pause-btn"
-                onClick={toggleVideoPlayback}
-                aria-label="Resume video"
-              >
-                <Play size={24} />
-              </button>
-            )}
           </div>
         </div>
       </section>
