@@ -50,23 +50,6 @@ function GoldParticles() {
   return <canvas ref={canvasRef} className="gold-particles-canvas" />;
 }
 
-/* =========================================
-   SCROLL PROGRESS BAR
-========================================= */
-function ScrollProgressBar() {
-  const barRef = useRef(null);
-  useEffect(() => {
-    const update = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
-      if (barRef.current) barRef.current.style.width = pct + '%';
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
-  }, []);
-  return <div className="scroll-progress" ref={barRef} />;
-}
-
 // Pages
 import Home from './pages/Home';
 import About from './pages/About';
@@ -403,7 +386,6 @@ export default function App() {
   return (
     <Router>
       <GoldParticles />
-      <ScrollProgressBar />
       <CustomCursor />
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />
