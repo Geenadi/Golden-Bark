@@ -54,7 +54,7 @@ export default function Home() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         } else {
           video.pause();
         }
@@ -64,6 +64,25 @@ export default function Home() {
 
     observer.observe(video);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        videoRef.current.play().catch(err => console.log("Playback prevented:", err));
+      }
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('touchstart', handleFirstInteraction);
+
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
   }, []);
 
   return (
@@ -180,7 +199,7 @@ export default function Home() {
           <div className="process-video-header reveal">
             <div className="section-tag">Behind the Process</div>
             <h2 className="section-title">
-              From <span className="text-gold">Estate </span> 
+              From <span className="text-gold">Estate </span>
               to <span className="text-gold">Packaging</span>
             </h2>
             <div className="gold-divider" style={{ margin: '20px auto' }} />
