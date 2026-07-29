@@ -68,7 +68,7 @@
 .grade-card-image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.55) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.55) 100%);
   pointer-events: none;
 }
 
@@ -413,8 +413,8 @@
     font-weight: 600;
   }
 
-  .compare-table__cell > span,
-  .compare-table__cell > strong {
+  .compare-table__cell>span,
+  .compare-table__cell>strong {
     width: 100%;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -488,7 +488,7 @@
 .modal-image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(10,10,10,0.8) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(10, 10, 10, 0.8) 100%);
   pointer-events: none;
 }
 
