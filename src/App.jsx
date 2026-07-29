@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, MapPin, Globe, Share2, MessageCircle, Users, ChevronRight, ChevronDown, MessageSquare } from 'lucide-react';
 import './index.css';
+import ReactDOM from 'react-dom';
+
 
 /* =========================================
    GOLD PARTICLE CANVAS
@@ -349,10 +351,12 @@ function Footer() {
 ========================================= */
 function Layout({ children }) {
   return (
-    <div className="page-enter">
+    <>
       <Navbar />
-      <main>{children}</main>
-      <Footer />
+      <div className="page-enter">
+        <main>{children}</main>
+        <Footer />
+      </div>
 
       {/* Floating WhatsApp Button */}
       <a
@@ -365,7 +369,8 @@ function Layout({ children }) {
         <MessageCircle size={24} />
         <span className="whatsapp-tooltip">Chat with us!</span>
       </a>
-    </div>
+      document.body
+    </>
   );
 }
 

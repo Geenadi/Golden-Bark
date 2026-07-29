@@ -781,13 +781,21 @@ textarea.form-control {
 }
 
 @media (max-width: 1024px) {
+
   .nav-segment-menu,
   .nav-segment-action {
-    display: none;
+    display: none !important;
+  }
+
+  .navbar-creative-inner {
+    height: 50px !important; 
   }
 
   .navbar-hamburger {
-    display: flex;
+    display: flex !important;
+    position: relative !important;
+    right: auto !important;
+    margin-left: auto !important; 
   }
 }
 
@@ -1082,11 +1090,11 @@ textarea.form-control {
 ============================================ */
 .whatsapp-float {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 90px;
+  right: 47px;
   width: 60px;
   height: 60px;
-  background: var(--gold-gradient);
+  background: var(--gold-gradient); 
   color: var(--dark-950);
   border-radius: 50%;
   display: flex;
@@ -1172,6 +1180,14 @@ textarea.form-control {
 
   100% {
     box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
+  }
+}
+
+/* Mobile Screen Override */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 90px !important;
+    right: 47px !important;
   }
 }
 
