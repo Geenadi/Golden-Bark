@@ -23,12 +23,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.05);
   transition: transform 8s ease;
 }
 
-.hero:hover .hero-bg-img {
-  transform: scale(1);
+/* Scoped to real pointer/hover devices: on touch, :hover never
+   fires, so the default 1.05 scale would sit permanently oversized
+   above the fold — which, even clipped by .hero's overflow:hidden,
+   still widens the mobile browser's layout viewport and pushes
+   position:fixed elements (like the WhatsApp button) off-screen. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-bg-img {
+    transform: scale(1.05);
+  }
+
+  .hero:hover .hero-bg-img {
+    transform: scale(1);
+  }
 }
 
 .hero-overlay {
@@ -118,6 +128,8 @@
 }
 
 .process-video-section {
+  position: relative;
+  overflow: hidden;
   padding-top: 52px;
   padding-bottom: 52px;
 }
@@ -553,12 +565,14 @@
 
 .preview-scroll-container {
   width: 100vw;
+  max-width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
   padding: 20px 0;
+  overflow: hidden;
 }
 
 .preview-track {
@@ -631,6 +645,10 @@
 /* ---- Why Ceylon ---- */
 .why-section {
   background: var(--dark-900);
+  /* Contains the reveal-left/reveal-right slide-in transforms below,
+     which sit off-screen (translateX ±50px) before they scroll into
+     view and would otherwise widen the page horizontally. */
+  overflow-x: hidden;
 }
 
 .why-grid {
@@ -817,6 +835,37 @@
   .why-image-wrap {
     height: 380px;
     order: -1;
+  }
+
+  /* .cta-ornament's negative right offset extends past its box's
+     edge in real layout coordinates. Even clipped by .cta-box's
+     overflow:hidden, that geometry still widens the page on mobile
+     browsers (their viewport-sizing pass isn't limited by ancestor
+     clipping the way painting is), so keep it flush on narrow screens. */
+  .cta-ornament {
+    top: -60px;
+    right: 0;
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Below 1024px, layouts stack to a single column, so the horizontal
+   slide-in reveal has no room — its pre-reveal translateX sits off
+   the edge of the screen and widens the page (this holds true even
+   inside `overflow: hidden` ancestors, since transformed layout
+   still affects the mobile browser's viewport-sizing calculation).
+   Fall back to the same vertical reveal used elsewhere. */
+@media (max-width: 1024px) {
+
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(30px);
+  }
+
+  .reveal-left.revealed,
+  .reveal-right.revealed {
+    transform: translateY(0);
   }
 }
 
