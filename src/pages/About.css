@@ -132,13 +132,39 @@
 /* Timeline */
 .timeline-section {
   background: var(--dark-900);
+  position: relative;
+  overflow: hidden;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+/* Cinnamon bark texture behind "Our Journey to Excellence" —
+   faint photo overlay with radial vignette fade. */
+.timeline-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/cinnamon-texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.timeline-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .timeline {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .timeline-line {
@@ -154,7 +180,7 @@
 .timeline-item {
   position: relative;
   width: 46%;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .timeline-item.left {
@@ -188,27 +214,27 @@
 }
 
 .timeline-card {
-  padding: 24px 28px;
+  padding: 16px 22px;
 }
 
 .timeline-year {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .timeline-title {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .timeline-desc {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.55;
 }
 
 /* Values */
@@ -291,7 +317,7 @@
   .timeline-item.left,
   .timeline-item.right {
     width: 100%;
-    margin: 0 0 32px 0;
+    margin: 0 0 18px 0;
     padding: 0 0 0 28px;
     text-align: left;
   }
