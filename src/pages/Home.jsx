@@ -1,346 +1,71 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Ship, Leaf, Globe, Star, ChevronDown, Sprout } from 'lucide-react';
+import { ArrowRight, Award, Leaf, MapPin, ShieldCheck, Ship, Sparkles } from 'lucide-react';
 import './Home.css';
-import sticksImage from '../assets/package.webp';
+import heroImage from '../assets/package.webp';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
-import cinnamonSticksImage from '../assets/cinnamon-2.jpg';
-import sticksImage2 from '../assets/package-2.jpg';
+import cinnamonImage from '../assets/cinnamon-2.jpg';
+import detailImage from '../assets/Ceylon_Cinnamon_Sticks.jpg';
 import processVideo from '../assets/web-video.mp4';
 
-
-
-/* ---- Scroll Reveal ---- */
 function useScrollReveal() {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(el => {
-        if (el.isIntersecting) el.target.classList.add('revealed');
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
 }
 
-const products = [
-  { grade: 'Alba', tag: 'Ultra-thin Luxury', desc: 'The rarest and most prized grade. Exceptionally thin, 6-10 mm quills with light golden-brown colour, smooth surface, and a delicate, highly refined sweetness.', color: '#fff3cd', stars: 5 },
-  { grade: 'C5', tag: 'Continental', desc: 'A premium Continental grade with authentic Ceylon cinnamon sweetness and aroma. Ideal for large-scale food production and export to international markets.', color: '#f3e5d0', stars: 4 },
-  { grade: 'C4', tag: 'Continental — Popular', desc: 'Excellent quality at an accessible price. Quills of 13-15 mm diameter with sweet fragrance and smooth bark, perfect for high-end retail packaging.', color: '#ffe0b2', stars: 4 },
-  { grade: 'H1', tag: 'Hamburg — Top Tier', desc: 'Significantly thicker quills (up to 23 mm), darker and sturdier. Prized for its robust, spicy flavour, ideal for traditional cooking and bold spice blends.', color: '#ffe0b2', stars: 3 },
-  { grade: 'H2', tag: 'Hamburg — Economical', desc: 'Thicker, more fibrous than H1 with a rougher surface. Strong, authentic flavour makes it a staple for grinding into high-quality cinnamon powder.', color: '#ffe0b2', stars: 3 },
-  { grade: 'M', tag: 'Mexican', desc: 'Specifically popular in Latin American markets. Rougher texture with reddish-brown hue, known for a pungent, sharp aroma and bold, distinct taste.', color: '#f3e5d0', stars: 3 },
-  { grade: 'Powder', tag: 'Ready to Use', desc: 'Finely ground from premium H1 & H2 material, delivering an instant, robust aromatic flavour ideal for bakeries, confectioneries, and retail spice jars.', color: '#ffe0b2', stars: 4 },
+const grades = [
+  { number: '01', name: 'Alba', note: 'The collector’s grade', copy: 'Impossibly fine, hand-rolled quills with a pale golden colour and an elegantly sweet finish.' },
+  { number: '02', name: 'Continental', note: 'C4 & C5', copy: 'Consistent, aromatic quills selected for discerning retail and food-service partners worldwide.' },
+  { number: '03', name: 'Hamburg', note: 'H1 & H2', copy: 'Full-bodied character and dependable quality for culinary blending, milling, and export.' },
 ];
-
-
 
 export default function Home() {
   useScrollReveal();
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  const videoRef = useRef(null);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, []);
 
-  useEffect(() => {
-    // Scroll to top on page load
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    const t = setTimeout(() => setHeroLoaded(true), 100);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => { });
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (videoRef.current) {
-        videoRef.current.muted = false;
-        videoRef.current.play().catch(err => console.log("Playback prevented:", err));
-      }
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-    };
-
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
-
-    return () => {
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-    };
-  }, []);
-
-  return (
-    <div className="home">
-      {/* ====== HERO ====== */}
-      <section className="hero">
-        <div className="hero-bg">
-          <img
-            src={sticksImage}
-            alt="Ceylon Cinnamon"
-            className="hero-bg-img"
-            onLoad={() => setHeroLoaded(true)}
-          />
-          <div className="hero-overlay" />
+  return <div className="home premium-home">
+    <section className="premium-hero">
+      <div className="premium-hero__wash" />
+      <div className="container premium-hero__grid">
+        <div className="premium-hero__copy">
+          <div className="eyebrow eyebrow--light"><span /> Estate-grown in Sri Lanka</div>
+          <p className="premium-hero__kicker">Golden Bark Exports</p>
+          <h1>True cinnamon,<br /><em>quietly exceptional.</em></h1>
+          <p className="premium-hero__intro">Hand-peeled Ceylon cinnamon from the Galle district—chosen for its delicate sweetness, nuanced fragrance and unmistakable provenance.</p>
+          <div className="premium-hero__actions"><Link to="/products" className="premium-button premium-button--gold">Discover our grades <ArrowRight size={16} /></Link><Link to="/contact" className="premium-link">Request a sample <ArrowRight size={15} /></Link></div>
         </div>
+        <div className="premium-hero__visual"><div className="premium-hero__image-frame"><img src={heroImage} alt="Golden Bark premium Ceylon cinnamon" /></div><div className="premium-hero__seal"><span>100%</span><small>Pure Ceylon<br />cinnamon</small></div><p className="premium-hero__caption">Hand rolled · Carefully graded · Export ready</p></div>
+      </div>
+      <div className="container premium-hero__footer"><span>01 / Origin</span><span>Galle District, Sri Lanka</span><span>Cinnamomum verum</span></div>
+    </section>
 
-        <div className={`hero-content container ${heroLoaded ? 'hero-content--visible' : ''}`}>
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-line" />
-            <span>Sri Lanka's Finest Spice Exporter</span>
-            <span className="hero-eyebrow-line" />
-          </div>
+    <section className="proof-bar"><div className="container proof-bar__grid">
+      <div><MapPin size={18} /><span><b>Single origin</b> Grown in Sri Lanka</span></div><div><Award size={18} /><span><b>Hand selected</b> Grade by grade</span></div><div><ShieldCheck size={18} /><span><b>Pure product</b> Never blended</span></div><div><Ship size={18} /><span><b>Export focused</b> Packed with care</span></div>
+    </div></section>
 
-          <h1 className="hero-title">
-            The World's<br />
-            <span className="text-gold">Finest Ceylon</span><br />
-            Cinnamon
-          </h1>
+    <section className="section origin-section"><div className="container origin-grid">
+      <div className="origin-images reveal-left"><img className="origin-images__main" src={cinnamonImage} alt="Ceylon cinnamon quills" /><div className="origin-images__detail"><img src={harvestImage} alt="Cinnamon harvest in Sri Lanka" /></div><div className="origin-images__label"><span>Galle</span><small>Southern Province</small></div></div>
+      <div className="origin-copy reveal-right"><div className="eyebrow">The Golden Bark standard</div><h2>Quality you can<br /><em>see, smell and trace.</em></h2><p>Real Ceylon cinnamon is not a commodity. Its fine, layered bark carries a naturally sweet, citrus-like perfume that no substitute can imitate.</p><p>We work directly with skilled peelers and growers, following every harvest from estate to final packing. That close relationship lets us protect the character of every quill—and the confidence of every buyer.</p><Link to="/about" className="premium-link premium-link--dark">Our story <ArrowRight size={15} /></Link></div>
+    </div></section>
 
-          <p className="hero-subtitle">
-            From the lush green highlands of Sri Lanka, we bring you the authentic taste of
-            true Ceylon cinnamon - pure, organic and ethically sourced since 2025.
-          </p>
+    <section className="section craft-section"><div className="container"><div className="craft-head reveal"><div><div className="eyebrow eyebrow--light">The difference is in the details</div><h2>Made by hand.<br /><em>Judged by exacting standards.</em></h2></div><p>From the first cut to the final seal, we take the slower route—because exceptional cinnamon leaves no room for shortcuts.</p></div><div className="craft-grid">
+      <article className="craft-step reveal"><span>01</span><Leaf size={22} /><h3>Estate selection</h3><p>We source from cinnamon-growing communities in the fertile south of Sri Lanka.</p></article><article className="craft-step reveal"><span>02</span><Sparkles size={22} /><h3>Artisan peeling</h3><p>Skilled hands create the paper-thin layers that define true Ceylon cinnamon.</p></article><article className="craft-step reveal"><span>03</span><ShieldCheck size={22} /><h3>Final inspection</h3><p>Every batch is sorted, graded and prepared to travel beautifully across the world.</p></article>
+    </div></div></section>
 
-          <div className="hero-actions">
-            <Link to="/products" className="btn btn-gold">
-              Explore Products <ArrowRight size={16} />
-            </Link>
-            <Link to="/contact" className="btn btn-outline">
-              Request a Sample
-            </Link>
-          </div>
-        </div>
-      </section>
+    <section className="section process-section"><div className="container"><div className="process-section__head reveal"><div className="eyebrow">The Golden Bark journey</div><h2>From cinnamon bark<br /><em>to the finished quill.</em></h2><p>See the traditional craft behind every Golden Bark shipment, from harvesting and peeling through grading and careful packing.</p></div><div className="process-film reveal"><video src={processVideo} controls playsInline preload="auto" controlsList="nodownload">Your browser does not support this video.</video><div className="process-film__caption"><span>Watch the process</span><span>Estate → Peeling → Grading → Packing</span></div></div></div></section>
 
-      {/* ====== INTRO ====== */}
-      <section className="section intro-section" id="intro-content">
-        <div className="container">
-          <div className="intro-grid">
-            <div className="intro-images reveal">
-              <img
-                src={sticksImage2}
-                alt="Golden Bark Package"
-                className="intro-img intro-img-main"
-              />
-              <img
-                src={harvestImage}
-                alt="Cinnamon Harvest"
-                className="intro-img intro-img-accent"
-              />
-              <div className="intro-badge glass">
-                <Award size={22} color="var(--gold-500)" />
-                <div>
-                  <div className="intro-badge-title">Best Quality</div>
-                  <div className="intro-badge-sub">Since 2025</div>
-                </div>
-              </div>
-            </div>
+    <section className="section collection-section"><div className="container"><div className="collection-head reveal"><div className="eyebrow">Our collection</div><h2>Grades for every<br /><em>exceptional standard.</em></h2><p>Distinct grades, one unwavering promise of authentic Ceylon cinnamon.</p></div><div className="grade-grid">{grades.map((grade) => <article className="grade-card reveal" key={grade.name}><span className="grade-card__number">{grade.number}</span><p className="grade-card__note">{grade.note}</p><h3>{grade.name}</h3><p>{grade.copy}</p><Link to="/products" aria-label={`Explore ${grade.name} grade`}><ArrowRight size={18} /></Link></article>)}</div><div className="collection-action reveal"><Link to="/products" className="premium-button premium-button--outline">Explore all cinnamon grades <ArrowRight size={16} /></Link></div></div></section>
 
-            <div className="intro-text reveal" style={{ animationDelay: '0.2s' }}>
-              <div className="section-tag">Our Heritage</div>
-              <h2 className="section-title">
-                The True Cinnamon<br />
-                <span className="text-gold">From Sri Lanka</span>
-              </h2>
-              <div className="gold-divider" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '16px' }}>
-                Ceylon cinnamon — <em style={{ fontFamily: 'var(--font-elegant)', color: 'var(--text-primary)' }}>Cinnamomum verum</em> — is the only "true" cinnamon in the world.
-                Unlike Cassia cinnamon, it is delicate, complex and naturally low in coumarin.
-                Golden Bark Exports was officially registered in 2025, continuing a long family tradition of cinnamon cultivation with a modern commitment to global excellence.
-              </p>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '32px' }}>
-                We work directly with experienced peelers and farmers in Galle district,
-                ensuring fair trade practices and the highest traceability from farm to shipment.
-              </p>
-              <div className="intro-features">
-                {[
-                  [Leaf, 'Farm to Export', '100% traceability from certified organic farms'],
-                  [Award, 'Premium Quality', 'Graded, sorted and inspected by experts'],
-                  [Ship, 'Global Logistics', 'Reliable export to many countries worldwide'],
-                ].map(([Icon, title, desc], i) => (
-                  <div className="intro-feature reveal" key={title} style={{ transitionDelay: `${i * 0.2}s` }}>
-                    <div className="intro-feature-icon">
-                      <Icon size={22} />
-                    </div>
-                    <div>
-                      <div className="intro-feature-title">{title}</div>
-                      <div className="intro-feature-desc">{desc}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Link to="/about" className="btn btn-outline" style={{ marginTop: '8px' }}>
-                Our Story <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== PROCESS VIDEO ====== */}
-      <section className="section process-video-section">
-        <div className="container">
-          <div className="process-video-header reveal">
-            <div className="section-tag">Behind the Process</div>
-            <h2 className="section-title">
-              From <span className="text-gold">Estate </span>
-              to <span className="text-gold">Packaging</span>
-            </h2>
-            <div className="gold-divider" style={{ margin: '20px auto' }} />
-            <p className="section-subtitle" style={{ margin: '10px auto', fontSize: '1.125rem' }}>
-              The journey of cinnamon from harvesting and peeling to careful grading and packing.
-            </p>
-          </div>
-
-          <div className="process-video-card reveal" style={{ transitionDelay: '0.2s' }}>
-            <video
-              ref={videoRef}
-              className="process-video"
-              src={processVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              disablePictureInPicture
-              controlsList="nodownload nofullscreen noremoteplayback"
-              onContextMenu={(e) => e.preventDefault()}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ====== PRODUCTS PREVIEW ====== */}
-      <section className="section products-preview">
-        <div className="container">
-          <div className="reveal-left" style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Product Range</div>
-            <h2 className="section-title">
-              Our Finest <span className="text-gold">Cinnamon Grades</span>
-            </h2>
-            <div className="gold-divider" style={{ margin: '20px auto' }} />
-            <p className="section-subtitle" style={{ margin: '0 auto' }}>
-              We export six internationally recognised grades of Ceylon cinnamon sticks,
-              each meeting the strictest quality standards.
-            </p>
-          </div>
-
-          <div className="preview-scroll-container">
-            <div className="preview-track">
-              {/* Double the products for seamless infinite scroll */}
-              {[...products, ...products, ...products].map((p, i) => (
-                <div className="card preview-card" key={`${p.grade}-${i}`}>
-                  <div className="preview-card-header">
-                    <span className="badge">{p.tag}</span>
-                    <span className="preview-grade">{p.grade}</span>
-                  </div>
-                  <h3 className="preview-card-title">{p.grade} {p.grade === 'Alba' ? 'Grade' : ''}</h3>
-                  <p className="preview-card-desc">{p.desc}</p>
-                  <div className="preview-stars">
-                    {[...Array(p.stars || 4)].map((_, j) => (
-                      <Star key={j} size={12} fill="var(--gold-500)" color="var(--gold-500)" />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '48px' }}>
-            <Link to="/products" className="btn btn-gold">
-              View All 8 Grades <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ====== WHY CEYLON ====== */}
-      <section className="section why-section">
-        <div className="container">
-          <div className="why-grid">
-            <div className="reveal-left">
-              <div className="section-tag">Why Ceylon Cinnamon?</div>
-              <h2 className="section-title">
-                Nature's Most<br /><span className="text-gold">Precious Spice</span>
-              </h2>
-              <div className="gold-divider" />
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.9, marginBottom: '32px' }}>
-                Ceylon cinnamon has been treasured for millennia for its extraordinary flavour,
-                fragrance, and health benefits. It is lower in coumarin, richer in essential oils,
-                and infinitely more complex than any substitute.
-              </p>
-              <div className="why-points">
-                {[
-                  'Naturally low coumarin content - safe for daily use',
-                  'Rich in cinnamaldehyde with powerful antioxidant properties',
-                  'Delicate, sweet flavour that enhances both sweet and savoury dishes',
-                  'Sustainably harvested using traditional Sri Lankan techniques',
-                  'Supports hundreds of rural farming families across Sri Lanka',
-                ].map((p, i) => (
-                  <div className="why-point" key={i}>
-                    <div className="why-point-dot" />
-                    <span>{p}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="why-image-wrap reveal-right" style={{ transitionDelay: '0.2s' }}>
-              <img
-                src={cinnamonSticksImage}
-                alt="Ceylon Cinnamon Close Up"
-                className="why-image"
-              />
-              <div className="why-globe glass">
-                <Sprout size={28} color="var(--gold-500)" />
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', background: 'var(--gold-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>100%</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>Natural</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ====== CTA ====== */}
-      <section className="section cta-section">
-        <div className="container">
-          <div className="cta-box glass reveal">
-            <div className="cta-ornament" />
-            <div className="section-tag" style={{ justifyContent: 'center' }}>Start Exporting Today</div>
-            <h2 className="section-title" style={{ textAlign: 'center' }}>
-              Ready to Partner With <span className="text-gold">Golden Bark?</span>
-            </h2>
-            <p style={{ textAlign: 'center', color: 'var(--text-secondary)', maxWidth: '480px', margin: '0 auto 36px', lineHeight: 1.8 }}>
-              Contact us today to request samples, get pricing, or learn more about our export capabilities and certification documentation.
-            </p>
-            <div className="hero-actions" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-gold">
-                Contact Us Now <ArrowRight size={16} />
-              </Link>
-              <Link to="/products" className="btn btn-outline">
-                View Products
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+    <section className="section final-cta"><div className="container final-cta__box reveal"><img src={detailImage} alt="Close-up of premium cinnamon sticks" /><div className="final-cta__copy"><div className="eyebrow">For discerning partners</div><h2>Bring the true taste<br />of Ceylon to your table.</h2><p>Request samples, pricing or export information from our team.</p><Link to="/contact" className="premium-button premium-button--gold">Begin an enquiry <ArrowRight size={16} /></Link></div></div></section>
+  </div>;
 }

@@ -1,59 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ============================================
    GOLDEN BARK — DESIGN SYSTEM
-   Gold & Black Premium Theme
+   Warm Ceylon: paper, brass & sage
 ============================================ */
 
 :root {
-  /* Gold Palette */
-  --gold-100: #FFF8E1;
-  --gold-200: #FFE082;
-  --gold-300: #FFD54F;
-  --gold-400: #FFCA28;
-  --gold-500: #C9A84C;
-  --gold-600: #B8860B;
-  --gold-700: #A0742A;
-  --gold-800: #8B6914;
-  --gold-gradient: linear-gradient(135deg, #C9A84C 0%, #FFD700 40%, #B8860B 70%, #C9A84C 100%);
-  --gold-gradient-h: linear-gradient(90deg, #C9A84C 0%, #FFD700 50%, #B8860B 100%);
-  --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.4) 50%, transparent 100%);
+  /* Brass Palette — deepened slightly so it still reads on white */
+  --gold-100: #FBF3E7;
+  --gold-200: #EDD3AD;
+  --gold-300: #DBAE72;
+  --gold-400: #B87D3C;
+  --gold-500: #A5672E;
+  --gold-600: #8A5423;
+  --gold-700: #6E421B;
+  --gold-800: #523114;
+  --gold-gradient: linear-gradient(135deg, #C6924E 0%, #A5672E 100%);
+  --gold-gradient-h: linear-gradient(90deg, #C6924E 0%, #A5672E 100%);
+  --gold-shimmer: linear-gradient(90deg, transparent 0%, rgba(165, 103, 46, 0.16) 50%, transparent 100%);
 
-  /* Black / Dark Palette */
-  --black: #000000;
-  --dark-950: #080808;
-  --dark-900: #0D0D0D;
-  --dark-850: #111111;
-  --dark-800: #161616;
-  --dark-750: #1A1A1A;
-  --dark-700: #202020;
-  --dark-600: #2A2A2A;
-  --dark-500: #333333;
-  --dark-400: #404040;
-  --dark-300: #555555;
-  --dark-200: #707070;
-  --dark-100: #999999;
+  /* Sage — secondary accent, used sparingly */
+  --sage-400: #839968;
+  --sage-500: #6B7F52;
+  --sage-600: #556641;
+
+  /* Stable dark ink — always dark, independent of theme, for text on light/accent surfaces */
+  --ink: #241A10;
+
+  /* Paper Palette (was bark/espresso — now light, "add white" per feedback) */
+  --black: #FFFFFF;
+  --dark-950: #FFFFFF;
+  --dark-900: #FDFBF5;
+  --dark-850: #F6EFDF;
+  --dark-800: #F0E6D0;
+  --dark-750: #FFFFFF;
+  --dark-700: #EAE0C8;
+  --dark-600: #DDCBA5;
+  --dark-500: #CBB585;
+  --dark-400: #B69C68;
+  --dark-300: #9C8256;
+  --dark-200: #7C6746;
+  --dark-100: #5C4A38;
 
   /* Text */
-  --text-primary: #F5F0E8;
-  --text-secondary: #C4B99A;
-  --text-muted: #7A7065;
-  --text-gold: #C9A84C;
+  --text-primary: #241A10;
+  --text-secondary: #5C4A38;
+  --text-muted: #8C765A;
+  --text-gold: #A5672E;
 
   /* Borders */
-  --border-gold: rgba(201, 168, 76, 0.3);
-  --border-gold-strong: rgba(201, 168, 76, 0.7);
-  --border-dark: rgba(255, 255, 255, 0.06);
+  --border-gold: rgba(165, 103, 46, 0.32);
+  --border-gold-strong: rgba(165, 103, 46, 0.7);
+  --border-dark: rgba(36, 26, 16, 0.1);
 
   /* Shadows */
-  --shadow-gold: 0 0 30px rgba(201, 168, 76, 0.2);
-  --shadow-gold-strong: 0 0 50px rgba(201, 168, 76, 0.4);
-  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 30px rgba(165, 103, 46, 0.16);
+  --shadow-gold-strong: 0 0 40px rgba(165, 103, 46, 0.28);
+  --shadow-card: 0 8px 28px rgba(36, 26, 16, 0.08), 0 2px 8px rgba(36, 26, 16, 0.05);
 
   /* Typography */
-  --font-display: 'Cinzel', serif;
+  --font-display: 'Fraunces', serif;
   --font-body: 'Inter', sans-serif;
-  --font-elegant: 'Cormorant Garamond', serif;
+  --font-elegant: 'Fraunces', serif;
 
   /* Spacing */
   --section-py: 100px;
@@ -61,8 +69,8 @@
 
   /* Transitions */
   --transition-fast: 0.2s ease;
-  --transition-base: 0.35s ease;
-  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Border radius */
   --radius-sm: 4px;
@@ -122,35 +130,6 @@ ul {
 }
 
 /* ============================================
-   CUSTOM CURSOR
-============================================ */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  z-index: 99999;
-  will-change: transform;
-}
-
-.cursor-dot {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--gold-500);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease;
-}
-
-.cursor-dot.hovered {
-  transform: translate(-50%, -50%) scale(1.8);
-  background-color: var(--gold-400);
-}
-
-/* ============================================
    SCROLLBAR
 ============================================ */
 ::-webkit-scrollbar {
@@ -185,10 +164,7 @@ ul {
    TYPOGRAPHY UTILITIES
 ============================================ */
 .text-gold {
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--gold-400);
 }
 
 .font-display {
@@ -274,6 +250,20 @@ ul {
 }
 
 /* ============================================
+   BUTTON ROW
+============================================ */
+.btn-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.btn-row .btn {
+  min-width: 180px;
+}
+
+/* ============================================
    BUTTONS
 ============================================ */
 .btn {
@@ -310,23 +300,24 @@ ul {
 }
 
 .btn-gold {
-  background: var(--gold-gradient);
-  color: var(--dark-900);
+  background: var(--gold-500);
+  color: var(--ink);
 }
 
 .btn-gold:hover {
+  background: var(--gold-400);
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold-strong);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--gold-500);
+  color: var(--gold-400);
   border: 1px solid var(--border-gold-strong);
 }
 
 .btn-outline:hover {
-  background: rgba(201, 168, 76, 0.08);
+  background: rgba(184, 125, 60, 0.1);
   border-color: var(--gold-500);
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold);
@@ -349,14 +340,14 @@ ul {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(184, 125, 60, 0.06) 0%, transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .card:hover {
   border-color: var(--border-gold);
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card), var(--shadow-gold);
 }
 
@@ -367,16 +358,6 @@ ul {
 /* ============================================
    GOLD LINE ANIMATION
 ============================================ */
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -411,41 +392,15 @@ ul {
   }
 }
 
-@keyframes rotateGold {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse-gold {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
-  }
-
-  50% {
-    box-shadow: 0 0 0 15px rgba(201, 168, 76, 0);
-  }
-}
-
 .animate-fadeInUp {
   animation: fadeInUp 0.8s var(--transition-slow) forwards;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
 }
 
 /* ============================================
    GLASS CARD
 ============================================ */
 .glass {
-  background: rgba(13, 13, 13, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-gold);
@@ -462,7 +417,7 @@ ul {
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 100px;
-  background: rgba(201, 168, 76, 0.12);
+  background: rgba(184, 125, 60, 0.12);
   color: var(--gold-500);
   border: 1px solid var(--border-gold);
 }
@@ -499,7 +454,7 @@ ul {
 
 .form-control:focus {
   border-color: var(--gold-500);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+  box-shadow: 0 0 0 3px rgba(184, 125, 60, 0.1);
 }
 
 .form-control::placeholder {
@@ -566,7 +521,7 @@ textarea.form-control {
 
 /* Logo segment with a curved notch background */
 .nav-segment-logo {
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   padding: 6px 20px;
@@ -576,13 +531,13 @@ textarea.form-control {
   align-items: center;
   min-width: 0;
   flex-shrink: 1;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(36, 26, 16, 0.1);
   transition: all var(--transition-base);
 }
 
 .navbar-creative.scrolled .nav-segment-logo {
-  background: rgba(8, 8, 8, 0.95);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 16px rgba(36, 26, 16, 0.12);
 }
 
 .navbar-logo {
@@ -637,7 +592,7 @@ textarea.form-control {
 }
 
 .nav-pill {
-  background: rgba(12, 12, 12, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-gold);
@@ -645,12 +600,12 @@ textarea.form-control {
   border-radius: 50px;
   display: flex;
   gap: 4px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgba(36, 26, 16, 0.1);
   transition: all var(--transition-base);
 }
 
 .navbar-creative.scrolled .nav-pill {
-  background: rgba(8, 8, 8, 0.95);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .nav-pill-link {
@@ -667,15 +622,15 @@ textarea.form-control {
 
 .nav-pill-link:hover,
 .nav-pill-link.active {
-  color: var(--dark-950);
+  color: var(--ink);
   background: var(--gold-gradient-h);
   font-weight: 700;
-  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.35);
+  box-shadow: 0 4px 15px rgba(184, 125, 60, 0.35);
 }
 
 /* Right action segment with curved notch background */
 .nav-segment-action {
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-gold);
@@ -683,19 +638,19 @@ textarea.form-control {
   border-radius: 15px 40px 15px 40px;
   display: flex;
   align-items: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(36, 26, 16, 0.1);
   transition: all var(--transition-base);
 }
 
 .navbar-creative.scrolled .nav-segment-action {
-  background: rgba(8, 8, 8, 0.95);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .nav-cta-button {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   font-size: 11px;
   font-weight: 700;
@@ -708,7 +663,7 @@ textarea.form-control {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(201, 168, 76, 0.12);
+  background: rgba(184, 125, 60, 0.12);
   border: 1px solid var(--border-gold);
   display: flex;
   align-items: center;
@@ -719,9 +674,9 @@ textarea.form-control {
 
 .nav-cta-button:hover .cta-icon-wrapper {
   background: var(--gold-gradient-h);
-  color: var(--dark-950);
+  color: var(--ink);
   transform: translateX(4px);
-  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 0 10px rgba(184, 125, 60, 0.4);
 }
 
 .navbar-hamburger {
@@ -731,7 +686,7 @@ textarea.form-control {
   cursor: pointer;
   padding: 10px;
   flex-shrink: 0;
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--border-gold);
   border-radius: 50%;
   backdrop-filter: blur(10px);
@@ -750,7 +705,7 @@ textarea.form-control {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8, 8, 8, 0.98);
+  background: rgba(253, 251, 245, 0.98);
   z-index: 999;
   flex-direction: column;
   align-items: center;
@@ -776,7 +731,7 @@ textarea.form-control {
   justify-content: center;
   gap: 12px;
   background: var(--gold-gradient);
-  color: var(--dark-950);
+  color: var(--ink);
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;
@@ -784,7 +739,7 @@ textarea.form-control {
   letter-spacing: 2px;
   padding: 16px 36px;
   border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 4px 20px rgba(184, 125, 60, 0.3);
   transition: all var(--transition-base);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -851,7 +806,14 @@ textarea.form-control {
    CREATIVE FOOTER
 ============================================ */
 .footer-creative {
+  /* Deliberately stays a dark band against the light page — scope these
+     tokens back to their dark-theme values for everything inside it. */
+  --dark-950: #170F08;
+  --text-primary: #F6EDDD;
+  --text-secondary: #C9B594;
+  --text-muted: #8C765A;
   background: var(--dark-950);
+  color: var(--text-primary);
   position: relative;
   overflow: hidden;
   padding-top: 0;
@@ -901,7 +863,7 @@ textarea.form-control {
 .footer-deck:hover {
   transform: translateY(-5px);
   border-color: var(--border-gold);
-  box-shadow: 0 15px 40px rgba(201, 168, 76, 0.1);
+  box-shadow: 0 15px 40px rgba(184, 125, 60, 0.1);
 }
 
 .footer-logo-brand {
@@ -968,10 +930,10 @@ textarea.form-control {
 
 .footer-social-pill:hover {
   background: var(--gold-gradient-h);
-  color: var(--dark-950);
+  color: var(--ink);
   border-color: var(--gold-500);
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 4px 15px rgba(184, 125, 60, 0.4);
 }
 
 .footer-col-title-creative {
@@ -1041,7 +1003,7 @@ textarea.form-control {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(201, 168, 76, 0.1);
+  background: rgba(184, 125, 60, 0.1);
   border: 1px solid var(--border-gold);
   display: flex;
   align-items: center;
@@ -1083,7 +1045,7 @@ textarea.form-control {
   border: 1px solid var(--border-gold);
   padding: 4px 14px;
   border-radius: 20px;
-  background: rgba(201, 168, 76, 0.05);
+  background: rgba(184, 125, 60, 0.05);
 }
 
 @media (max-width: 1024px) {
@@ -1131,7 +1093,7 @@ textarea.form-control {
    SELECTION
 ============================================ */
 ::selection {
-  background: rgba(201, 168, 76, 0.25);
+  background: rgba(184, 125, 60, 0.25);
   color: var(--gold-300);
 }
 
@@ -1145,15 +1107,15 @@ textarea.form-control {
   width: 60px;
   height: 60px;
   background: var(--gold-gradient); 
-  color: var(--dark-950);
+  color: var(--ink);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 8px 32px rgba(184, 125, 60, 0.3);
   z-index: 1000;
   transition: all var(--transition-base);
-  animation: whatsapp-pulse 2s infinite;
+  animation: whatsapp-pulse 2s ease-out 3;
 }
 
 .whatsapp-float svg {
@@ -1164,8 +1126,8 @@ textarea.form-control {
 
 .whatsapp-float:hover {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
-  color: var(--dark-900);
+  box-shadow: 0 12px 40px rgba(184, 125, 60, 0.5);
+  color: var(--ink);
 }
 
 .whatsapp-float:hover svg {
@@ -1221,113 +1183,15 @@ textarea.form-control {
 
 @keyframes whatsapp-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4);
+    box-shadow: 0 0 0 0 rgba(184, 125, 60, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 0 15px rgba(201, 168, 76, 0);
+    box-shadow: 0 0 0 15px rgba(184, 125, 60, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0);
-  }
-}
-
-/* ============================================
-   CURSOR TRAIL SPARKLE
-============================================ */
-.cursor-trail {
-  position: fixed;
-  border-radius: 50%;
-  background: var(--gold-400);
-  pointer-events: none;
-  z-index: 99997;
-  transform: translate(-50%, -50%);
-  animation: trailFade 0.7s ease-out forwards;
-}
-
-@keyframes trailFade {
-  0% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.1);
-  }
-}
-
-/* ============================================
-   GOLD PARTICLES CANVAS
-============================================ */
-.gold-particles-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ============================================
-   AMBIENT GLOW ORBS
-============================================ */
-.glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(90px);
-  animation: orbFloat 9s ease-in-out infinite;
-  will-change: transform;
-}
-
-.glow-orb-gold {
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0%, transparent 70%);
-}
-
-.glow-orb-warm {
-  background: radial-gradient(circle, rgba(255, 160, 50, 0.10) 0%, transparent 70%);
-}
-
-@keyframes orbFloat {
-
-  0%,
-  100% {
-    transform: translateY(0px) scale(1);
-  }
-
-  40% {
-    transform: translateY(-40px) scale(1.06);
-  }
-
-  70% {
-    transform: translateY(18px) scale(0.96);
-  }
-}
-
-/* ============================================
-   SHIMMER TEXT (gold title animation)
-============================================ */
-.text-shimmer {
-  background: linear-gradient(90deg,
-      #C9A84C 0%, #FFD700 20%, #FFF8E1 38%,
-      #FFD700 55%, #B8860B 70%, #C9A84C 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: textShimmer 4s linear infinite;
-}
-
-@keyframes textShimmer {
-  0% {
-    background-position: 0% center;
-  }
-
-  100% {
-    background-position: 220% center;
+    box-shadow: 0 0 0 0 rgba(184, 125, 60, 0);
   }
 }
 
@@ -1369,70 +1233,8 @@ textarea.form-control {
   animation: statPop 0.35s ease;
 }
 
-/* ============================================
-   PULSING GOLD BORDER (CTA box)
-============================================ */
-@keyframes ctaGlow {
-  0% {
-    box-shadow: 0 0 20px rgba(201, 168, 76, 0.08), 0 8px 32px rgba(0, 0, 0, 0.5);
-    border-color: rgba(201, 168, 76, 0.2);
-  }
-
-  100% {
-    box-shadow: 0 0 70px rgba(201, 168, 76, 0.28), 0 8px 48px rgba(0, 0, 0, 0.6);
-    border-color: rgba(255, 215, 0, 0.55);
-  }
-}
-
 .cta-box {
-  animation: ctaGlow 3s ease-in-out infinite alternate;
-}
-
-/* ============================================
-   PERSPECTIVE TILT (product & feature cards)
-============================================ */
-.tilt-target {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* ============================================
-   SECTION SECTION DIVIDER GLOW LINE
-============================================ */
-.glow-line {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.35), transparent);
-  position: relative;
-}
-
-.glow-line::after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 3px;
-  background: var(--gold-gradient-h);
-  border-radius: 2px;
-  filter: blur(2px);
-  animation: glowLinePulse 3s ease-in-out infinite;
-}
-
-@keyframes glowLinePulse {
-
-  0%,
-  100% {
-    opacity: 0.5;
-    width: 80px;
-  }
-
-  50% {
-    opacity: 1;
-    width: 160px;
-  }
+  box-shadow: 0 0 40px rgba(184, 125, 60, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 768px) {

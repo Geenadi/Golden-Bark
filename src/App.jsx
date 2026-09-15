@@ -1,132 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, MapPin, Globe, Share2, MessageCircle, Users, ChevronRight, ChevronDown, MessageSquare } from 'lucide-react';
 import './index.css';
-
-
-/* =========================================
-   GOLD PARTICLE CANVAS
-========================================= */
-function GoldParticles() {
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animId;
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener('resize', resize);
-    const GOLD = ['rgba(201,168,76,0.9)', 'rgba(255,215,0,0.8)', 'rgba(184,134,11,0.7)', 'rgba(255,224,130,0.6)'];
-    const particles = Array.from({ length: 55 }, (_, i) => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      size: Math.random() * 1.4 + 0.3,
-      speedY: -(Math.random() * 0.28 + 0.06),
-      phase: Math.random() * Math.PI * 2,
-      opacity: Math.random() * 0.4 + 0.1,
-      color: GOLD[i % GOLD.length],
-    }));
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const t = Date.now() * 0.001;
-      particles.forEach(p => {
-        p.y += p.speedY;
-        p.x += Math.sin(t * 0.6 + p.phase) * 0.18;
-        if (p.y < -5) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; }
-        const alpha = p.opacity * (0.5 + 0.5 * Math.sin(t * 0.8 + p.phase));
-        ctx.save();
-        ctx.globalAlpha = alpha * 0.5;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        ctx.restore();
-      });
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
-  }, []);
-  return <canvas ref={canvasRef} className="gold-particles-canvas" />;
-}
+import Preloader from './components/Preloader';
 
 // Pages
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
-
-/* =========================================
-   CUSTOM CURSOR + SPARKLE TRAIL
-========================================= */
-function CustomCursor() {
-  const cursorRef = useRef(null);
-  const dotRef = useRef(null);
-  const lastTrail = useRef(0);
-
-  useEffect(() => {
-    let reqId;
-    let mouseX = 0, mouseY = 0;
-    let currentX = 0, currentY = 0;
-
-    const move = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-
-      // Sparkle trail
-      const now = Date.now();
-      if (now - lastTrail.current > 55) {
-        lastTrail.current = now;
-        const sz = Math.random() * 3 + 2;
-        const spark = document.createElement('div');
-        spark.className = 'cursor-trail';
-        spark.style.cssText = `left:${mouseX}px;top:${mouseY}px;width:${sz}px;height:${sz}px;`;
-        document.body.appendChild(spark);
-        setTimeout(() => spark.remove(), 750);
-      }
-    };
-
-    const updatePosition = () => {
-      const speed = 0.2;
-      currentX += (mouseX - currentX) * speed;
-      currentY += (mouseY - currentY) * speed;
-
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-      }
-
-      reqId = requestAnimationFrame(updatePosition);
-    };
-
-    const addHover = () => dotRef.current?.classList.add('hovered');
-    const removeHover = () => dotRef.current?.classList.remove('hovered');
-
-    document.addEventListener('mousemove', move);
-    reqId = requestAnimationFrame(updatePosition);
-
-    const interactiveEls = document.querySelectorAll('a, button, .card, input, textarea, select');
-    interactiveEls.forEach(el => {
-      el.addEventListener('mouseenter', addHover);
-      el.addEventListener('mouseleave', removeHover);
-    });
-
-    return () => {
-      document.removeEventListener('mousemove', move);
-      cancelAnimationFrame(reqId);
-      interactiveEls.forEach(el => {
-        el.removeEventListener('mouseenter', addHover);
-        el.removeEventListener('mouseleave', removeHover);
-      });
-    };
-  }, []);
-
-  return (
-    <div className="custom-cursor" ref={cursorRef}>
-      <div className="cursor-dot" ref={dotRef} />
-    </div>
-  );
-}
 
 /* =========================================
    NAVBAR
@@ -387,15 +269,16 @@ export default function App() {
   }, []);
 
   return (
-    <Router>
-      <GoldParticles />
-      <CustomCursor />
-      <Routes>
-        <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/about" element={<Layout><About /></Layout>} />
-        <Route path="/products" element={<Layout><Products /></Layout>} />
-        <Route path="/contact" element={<Layout><Contact /></Layout>} />
-      </Routes>
-    </Router>
+    <>
+      <Preloader />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout><Home /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/products" element={<Layout><Products /></Layout>} />
+          <Route path="/contact" element={<Layout><Contact /></Layout>} />
+        </Routes>
+      </Router>
+    </>
   );
 }
