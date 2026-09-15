@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import './Contact.css';
-import backgroundHero from '../assets/contactback.jpg';
+import backgroundHero from '../assets/contactback.webp';
 
 // ─── EmailJS credentials ─────────────────────────────────────────
 const EMAILJS_SERVICE_ID = 'service_4jlvr99';
@@ -114,6 +114,9 @@ export default function Contact() {
             src={backgroundHero}
             alt="Contact Golden Bark"
             className="page-hero-img"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
           <div className="page-hero-overlay" />
         </div>

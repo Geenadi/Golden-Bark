@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Leaf, MapPin, ShieldCheck, Ship, Sparkles } from 'lucide-react';
 import './Home.css';
-import heroImage from '../assets/package.webp';
+import heroImage from '../assets/package-compressed.webp';
 import harvestImage from '../assets/Cinnamon_Harvest.jpg';
-import cinnamonImage from '../assets/cinnamon-2.jpg';
-import detailImage from '../assets/Ceylon_Cinnamon_Sticks.jpg';
+import cinnamonImage from '../assets/cinnamon-2.webp';
+import detailImage from '../assets/Ceylon_Cinnamon_Sticks.webp';
 import processVideo from '../assets/web-video.mp4';
 
 function useScrollReveal() {

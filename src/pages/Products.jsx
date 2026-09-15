@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Package, Star, CheckCircle, X } from 'lucide-react';
 import './Products.css';
-import backgroundHero from '../assets/pro-background.jpg';
-import albaImg from '../assets/alba.jpg';
-import c5Img from '../assets/c5.jpg';
-import c4Img from '../assets/c4.jpg';
-import h1Img from '../assets/h1.jpg';
-import h2Img from '../assets/h2.jpg';
-import mImg from '../assets/m.jpg';
+import backgroundHero from '../assets/pro-background.webp';
+import albaImg from '../assets/alba.webp';
+import c5Img from '../assets/c5.webp';
+import c4Img from '../assets/c4.webp';
+import h1Img from '../assets/h1.webp';
+import h2Img from '../assets/h2.webp';
+import mImg from '../assets/m.webp';
+import powderImg from '../assets/cinnamon-powder.webp';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -141,7 +143,7 @@ const grades = [
     subtitle: 'Premium Grade Powder',
     tag: 'Ready to Use',
     stars: 4,
-    image: null,
+    image: powderImg,
     desc: 'Our finely ground Ceylon cinnamon powder is made from premium H1 and H2 Hamburg-grade material. It delivers an instant, robust aromatic flavour profile ideal for bakeries, confectioneries, specialty food brands, and retail spice jars.',
     color: '#C9A84C',
     thickness: 'Fine Powder',
@@ -157,11 +159,25 @@ const grades = [
 ];
 
 function GradeModal({ grade, onClose }) {
+  useEffect(() => {
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!grade) return undefined;
+    document.body.classList.add('product-modal-open');
+    return () => document.body.classList.remove('product-modal-open');
+  }, [grade]);
+
   if (!grade) return null;
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box glass" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>
+  return createPortal(
+    <div className="modal-overlay" onMouseDown={onClose} role="presentation">
+      <div className="modal-box" onMouseDown={(event) => event.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="grade-modal-title">
+        <button type="button" className="modal-close" onClick={() => onClose()} aria-label="Close product details">
           <X size={20} />
         </button>
         {grade.image && (
@@ -170,21 +186,18 @@ function GradeModal({ grade, onClose }) {
             <div className="modal-image-overlay" />
           </div>
         )}
-        <div className="modal-content" style={{ padding: grade.image ? '32px 40px 48px' : '48px 40px' }}>
-          <span className="badge">{grade.tag}</span>
-          <h2 className="modal-title">
-            {grade.name} Grade
-            <span style={{ fontSize: '0.7em', opacity: 0.6, display: 'block', fontFamily: 'var(--font-body)', fontWeight: 400, letterSpacing: '2px', marginTop: '4px' }}>{grade.subtitle}</span>
-          </h2>
-          <div style={{ display: 'flex', gap: '4px', margin: '8px 0 16px' }}>
-            {[...Array(grade.stars)].map((_, i) => (
-              <Star key={i} size={14} fill="var(--gold-500)" color="var(--gold-500)" />
-            ))}
-            {[...Array(5 - grade.stars)].map((_, i) => (
-              <Star key={i} size={14} color="var(--dark-400)" />
-            ))}
+        <div className="modal-content">
+          <div className="modal-heading">
+            <span className="modal-kicker">{grade.tag}</span>
+            <div className="modal-stars" aria-label={`${grade.stars} out of 5 quality tier`}>
+              {[...Array(grade.stars)].map((_, i) => <Star key={i} size={13} fill="currentColor" />)}
+            </div>
           </div>
-          <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '0.9rem', marginBottom: '24px' }}>{grade.desc}</p>
+          <h2 className="modal-title" id="grade-modal-title">
+            {grade.name} Grade
+            <span>{grade.subtitle}</span>
+          </h2>
+          <p className="modal-description">{grade.desc}</p>
           <div className="modal-specs">
             <div className="modal-spec">
               <span className="modal-spec-label">Bark Thickness</span>
@@ -203,12 +216,13 @@ function GradeModal({ grade, onClose }) {
               </li>
             ))}
           </ul>
-          <Link to="/contact" className="btn btn-gold" style={{ marginTop: '24px' }} onClick={onClose}>
+          <Link to="/contact" className="modal-request" onClick={onClose}>
             Request This Grade <ArrowRight size={16} />
           </Link>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -225,6 +239,9 @@ export default function Products() {
             src={backgroundHero}
             alt="Ceylon Cinnamon Products"
             className="page-hero-img"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
           <div className="page-hero-overlay" />
         </div>
@@ -273,7 +290,7 @@ export default function Products() {
                   {/* Card Image */}
                   {g.image && (
                     <div className="grade-card-image-wrapper">
-                      <img src={g.image} alt={g.name} className="grade-card-image" />
+                      <img src={g.image} alt={g.name} className="grade-card-image" loading="lazy" decoding="async" />
                       <div className="grade-card-image-overlay" />
                       <span className="grade-card-image-tag">{g.tag}</span>
                     </div>
@@ -335,6 +352,13 @@ export default function Products() {
                 onClick={() => setActiveGrade(g)}
               >
                 <div className="grade-card-watermark">{g.name[0] + g.name[1]}</div>
+                {g.image && (
+                  <div className="grade-card-image-wrapper">
+                    <img src={g.image} alt={g.name} className="grade-card-image" loading="lazy" decoding="async" />
+                    <div className="grade-card-image-overlay" />
+                    <span className="grade-card-image-tag">{g.tag}</span>
+                  </div>
+                )}
                 <div className="grade-card-body">
                   <div className="grade-card-content-left">
                     <div className="grade-card-top-bar">

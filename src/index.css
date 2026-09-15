@@ -551,6 +551,7 @@ textarea.form-control {
 .navbar-logo img {
   height: 64px;
   width: auto;
+  mix-blend-mode: multiply;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
   transition: transform var(--transition-base);
 }
@@ -1061,11 +1062,44 @@ textarea.form-control {
     gap: 32px;
   }
 
-  .footer-bottom {
+  .footer-bottom-creative {
     flex-direction: column;
     gap: 12px;
     text-align: center;
   }
+
+  .footer-certifications {
+    margin-right: 0;
+  }
+}
+
+/* Small-screen safeguards shared by every route. */
+@media (max-width: 600px) {
+  .navbar-creative { padding: 10px 12px 0; }
+  .navbar-creative-inner { height: 48px !important; }
+  .nav-segment-logo { padding: 0; }
+  .navbar-logo { gap: 8px; }
+  .navbar-logo img { height: 42px; }
+  .navbar-logo-name { font-size: .98rem; letter-spacing: .4px; }
+  .navbar-logo-sub { font-size: 8px; letter-spacing: 1.35px; }
+  .navbar-hamburger { width: 44px; height: 44px; padding: 0; align-items: center; justify-content: center; }
+  .mobile-menu { gap: 28px; padding: 92px 20px 32px; justify-content:flex-start; }
+  .mobile-menu .navbar-link { font-size: 18px; letter-spacing: 2.5px; }
+  .mobile-cta-button { width: min(100%, 280px); padding: 15px 20px; font-size: 13px; }
+  .footer-creative-content { padding: 32px 20px 44px; }
+  .footer-deck { padding: 24px 20px; }
+  .footer-bottom-creative { align-items: center; }
+  .footer-copy-creative { max-width: 290px; }
+  .cert-tag { white-space: normal; text-align: center; }
+  :where(.contact-grid, .origin-grid, .about-intro__grid, .about-place__grid, .about-craft__grid, .about-closing__inner, .premium-hero__grid, .final-cta__box) > * { min-width: 0; }
+  input, select, textarea { font-size: 16px !important; }
+  .contact-info-line, .footer-contact-text-creative, .modal-description, .modal-highlights li, .grade-card-desc { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 380px) {
+  .navbar-logo-text { display: none; }
+  .navbar-logo img { height: 44px; }
+  .mobile-menu .navbar-link { font-size: 17px; }
 }
 
 /* ============================================

@@ -53,7 +53,7 @@ function Navbar() {
           {/* Logo segment with a curved notch background */}
           <div className="nav-segment-logo">
             <Link to="/" className="navbar-logo">
-              <img src="/favicon.png" alt="Golden Bark Logo" width="160" height="160" onError={(e) => { e.target.style.display = 'none'; }} />
+              <img src="/Logo-01-new-navbar.png" alt="Golden Bark Logo" width="160" height="160" onError={(e) => { e.target.style.display = 'none'; }} />
               <div className="navbar-logo-text">
                 <span className="navbar-logo-name">Golden Bark</span>
                 <span className="navbar-logo-sub">Exports</span>
@@ -228,6 +228,17 @@ function Footer() {
 }
 
 /* =========================================
+   PRELOADER GATE
+   Only shows the intro splash on the homepage — a direct or fresh
+   visit to About/Products/Contact should render immediately.
+========================================= */
+function PreloaderGate() {
+  const location = useLocation();
+  if (location.pathname !== '/') return null;
+  return <Preloader />;
+}
+
+/* =========================================
    LAYOUT
 ========================================= */
 function Layout({ children }) {
@@ -269,16 +280,14 @@ export default function App() {
   }, []);
 
   return (
-    <>
-      <Preloader />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout><Home /></Layout>} />
-          <Route path="/about" element={<Layout><About /></Layout>} />
-          <Route path="/products" element={<Layout><Products /></Layout>} />
-          <Route path="/contact" element={<Layout><Contact /></Layout>} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <PreloaderGate />
+      <Routes>
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/about" element={<Layout><About /></Layout>} />
+        <Route path="/products" element={<Layout><Products /></Layout>} />
+        <Route path="/contact" element={<Layout><Contact /></Layout>} />
+      </Routes>
+    </Router>
   );
 }
